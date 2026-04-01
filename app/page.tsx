@@ -1,9 +1,27 @@
-
+import Navbar from "@/app/components/layout/Navbar";
+import Footer from "@/app/components/layout/Footer";
+import Hero from "@/app/components/sections/Hero";
+import TrustBar from "@/app/components/sections/TrustBar";
+import FeaturedProducts from "@/app/components/sections/FeaturedProducts";
+import WhyChooseUs from "@/app/components/sections/WhyChooseUs";
+import Bestsellers from "@/app/components/sections/Bestsellers";
+import Testimonials from "@/app/components/sections/Testimonials";
+import FinalCTA from "@/app/components/sections/FinalCTA";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <TrustBar />
+        <FeaturedProducts />
+        <WhyChooseUs />
+        <Bestsellers />
+        <Testimonials />
+        <FinalCTA />
+      </main>
+      <Footer />
+    </>
   );
 }
