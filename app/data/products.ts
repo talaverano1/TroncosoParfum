@@ -57,3 +57,5 @@ export const products: Product[] = [
     isBestseller: false,
   },
 ];
+
+// aca se cargan los productos que se muestran en la pagina principal.

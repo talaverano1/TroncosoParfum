@@ -8,9 +8,12 @@ import Bestsellers from "@/app/components/sections/Bestsellers";
 import Testimonials from "@/app/components/sections/Testimonials";
 import FinalCTA from "@/app/components/sections/FinalCTA";
 
+// "@/" es un atajo configurado en Next.js que apunta a la raíz del proyecto.
+
 export default function Home() {
   return (
-    <>
+    <> {/* "<> ... </>" Fragmento:React exige que una función devuelva un solo elemento padre
+        Como el Navbar, el Main y el Footer estan al mismo nivel se usa esta "etiqueta invisible" para agruparlos */}
       <Navbar />
       <main>
         <Hero />
@@ -25,3 +28,5 @@ export default function Home() {
     </>
   );
 }
+
+//aca se ensamblan y organizan el orden de las secciones de la pagina principal, se pueden agregar o quitar secciones segun se necesite. 
