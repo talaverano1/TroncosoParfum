@@ -34,3 +34,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// Aca se cargan las fuentes y estilos globales de la aplicacion.

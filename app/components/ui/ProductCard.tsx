@@ -39,10 +39,12 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-black mb-1">
           {product.name}
         </h3>
-        <p className="text-gray-500 text-sm mb-3">{product.description}</p>
+        <p className="text-gray-500 text-sm mb-3">
+          {product.description}
+        </p>
         <div className="flex items-center justify-between">
           <span className="text-gold font-bold text-lg">
-            ${product.price.toLocaleString("es-AR")}
+            ${product.price.toLocaleString("es-AR")} {/* toLocaleString("es-AR") formatea el número como moneda argentina */}
           </span>
           <button className="bg-black text-white text-sm px-4 py-2 rounded-full hover:bg-gold hover:text-black transition-colors duration-300 cursor-pointer">
             Ver producto
