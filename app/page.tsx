@@ -17,12 +17,12 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <TrustBar />
-        <FeaturedProducts />
-        <WhyChooseUs />
-        <Bestsellers />
-        <Testimonials />
-        <FinalCTA />
+        {/*<TrustBar />*/}
+        {/*<FeaturedProducts />*/}
+        {/*<WhyChooseUs />*/}
+        {/*<Bestsellers />*/}
+        {/*<Testimonials />*/}
+        {/*<FinalCTA />*/}
       </main>
       <Footer />
     </>

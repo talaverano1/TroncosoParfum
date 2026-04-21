@@ -31,13 +31,21 @@ const genderColor: Record<string, string> = {
   Unisex: "bg-amber-950/60 text-amber-300 border border-amber-700/40",
 };
 
-// ─── Climate icon map ─────────────────────────────────────────────────────────
-const climateIcon: Record<string, string> = {
-  Primavera: "🌸",
-  Verano: "☀️",
-  Otoño: "🍂",
-  Invierno: "❄️",
+// ─── Climate icon & color map ────────────────────────────────────────────────
+const climateConfig: Record<string, { icon: string; color: string }> = {
+  Primavera: { icon: "🌿", color: "bg-green-500" },
+  Verano: { icon: "☂️", color: "bg-pink-400" },
+  Otoño: { icon: "🍂", color: "bg-amber-600" },
+  Invierno: { icon: "❄️", color: "bg-blue-400" },
 };
+
+const timeOfDayConfig: Record<string, { icon: string; color: string }> = {
+  Día: { icon: "☀️", color: "bg-yellow-400" },
+  Noche: { icon: "🌙", color: "bg-indigo-400" },
+};
+
+const ALL_SEASONS = ["Invierno", "Primavera", "Verano", "Otoño"] as const;
+const ALL_TIMES = ["Día", "Noche"] as const;
 
 export default function ProductDetailPage() {
   const params = useParams<{ id: string }>();
@@ -67,7 +75,7 @@ export default function ProductDetailPage() {
               Inicio
             </Link>
             <span>/</span>
-            <span className="text-white/60">Colección</span>
+            <Link href="/catalogo" className="text-white/60 hover:text-gold transition-colors">Colección</Link>
             <span>/</span>
             <span className="text-gold truncate">{product.name}</span>
           </nav>
@@ -94,13 +102,14 @@ export default function ProductDetailPage() {
                 </span>
               )}
 
-              <div className="relative h-[480px] md:h-[560px] w-full bg-black-light">
+              <div className="relative w-full bg-black-light flex items-center justify-center">
                 <Image
                   src={product.image}
                   alt={product.name}
-                  fill
+                  width={1000}
+                  height={1200}
                   priority
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-auto transition-transform duration-700 group-hover:scale-105 object-contain"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Subtle dark vignette */}
@@ -153,86 +162,131 @@ export default function ProductDetailPage() {
             {/* ── Scent Notes ──────────────────────────────────────────────── */}
             <motion.div variants={fadeUp} className="space-y-3">
               <h2 className="text-white/50 text-xs uppercase tracking-[0.2em] font-semibold">
-                Pirámide Olfativa
+                Notas Olfativas
               </h2>
-              <div className="grid grid-cols-3 gap-3">
-                {/* Top */}
-                <ScentColumn label="Salida" notes={product.scentNotes.top} color="from-yellow-500/20" />
-                {/* Heart */}
-                <ScentColumn label="Corazón" notes={product.scentNotes.heart} color="from-rose-500/20" />
-                {/* Base */}
-                <ScentColumn label="Fondo" notes={product.scentNotes.base} color="from-amber-900/30" />
-              </div>
-            </motion.div>
-
-            {/* ── Style & Climate ───────────────────────────────────────────── */}
-            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-4">
-              <InfoCard
-                icon="✦"
-                label="Estilo"
-                value={product.style}
-              />
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
-                <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Clima ideal</p>
-                <div className="flex flex-wrap gap-2">
-                  {product.climate.map((c) => (
-                    <span
-                      key={c}
-                      className="text-sm text-white/80 bg-white/10 px-2 py-1 rounded-lg flex items-center gap-1"
-                    >
-                      <span>{climateIcon[c] ?? "🌤"}</span> {c}
+              <div className="flex flex-col gap-2">
+                {product.scentNotes.map((note) => (
+                  <div key={note.name} className="flex items-center gap-3">
+                    <span className="text-white/80 text-sm w-40 shrink-0">{note.name}</span>
+                    <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full gold-gradient"
+                        style={{ width: `${note.intensity * 10}%` }}
+                      />
+                    </div>
+                    <span className="text-gold/80 text-xs font-semibold w-6 text-right shrink-0">
+                      {note.intensity}
                     </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* ── Occasions ────────────────────────────────────────────────── */}
-            <motion.div variants={fadeUp}>
-              <h2 className="text-white/50 text-xs uppercase tracking-[0.2em] font-semibold mb-3">
-                Ocasiones de uso
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {product.occasions.map((occ) => (
-                  <span
-                    key={occ}
-                    className="text-sm text-gold border border-gold/30 bg-gold/5 px-3 py-1.5 rounded-full"
-                  >
-                    {occ}
-                  </span>
+                  </div>
                 ))}
               </div>
             </motion.div>
 
-            {/* ── CTA Buttons ───────────────────────────────────────────────── */}
+            {/* ── Acordes Principales ───────────────────────────────────────── */}
+            <motion.div variants={fadeUp} className="space-y-3">
+              <h2 className="text-white/50 text-xs uppercase tracking-[0.2em] font-semibold">
+                Acordes Principales
+              </h2>
+              <div className="flex flex-col gap-2.5">
+                {product.mainAccords.map((accord) => (
+                  <div key={accord.name} className="flex items-center gap-3">
+                    <span className="text-white/80 text-sm w-36 shrink-0 uppercase tracking-wide font-medium">
+                      {accord.name}
+                    </span>
+                    <div className="flex-1 h-5 bg-white/5 rounded-full overflow-hidden border border-white/10">
+                      <div
+                        className={`h-full rounded-full ${accord.color} flex items-center justify-end pr-2 transition-all duration-700`}
+                        style={{ width: `${accord.percentage}%` }}
+                      >
+                        <span className="text-white/90 text-[10px] font-bold leading-none">
+                          {accord.percentage}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ── Cuándo Usarlo ─────────────────────────────────────────────── */}
+            <motion.div variants={fadeUp} className="space-y-3">
+              <h2 className="text-white/50 text-xs uppercase tracking-[0.2em] font-semibold flex items-center gap-2">
+                <span>🕐</span> Cuándo Usarlo
+              </h2>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
+                <div className="grid grid-cols-6 gap-3">
+                  {ALL_SEASONS.map((season) => {
+                    const hasUsage = product.usageLevels !== undefined;
+                    const defaultActive = product.climate.includes(season);
+                    const fillValue = hasUsage ? (product.usageLevels[season] || 0) : (defaultActive ? 100 : 0);
+                    const isActive = hasUsage ? fillValue > 0 : defaultActive;
+                    const cfg = climateConfig[season];
+                    return (
+                      <div key={season} className="flex flex-col items-center gap-1.5">
+                        <span className={`text-2xl transition-all ${isActive ? "opacity-100" : "opacity-20 grayscale"}`}>
+                          {cfg.icon}
+                        </span>
+                        <span className={`text-xs text-center ${isActive ? "text-white/80" : "text-white/30"}`}>
+                          {season}
+                        </span>
+                        <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${cfg.color} transition-all duration-700`}
+                            style={{ width: `${hasUsage ? fillValue : (defaultActive ? 100 : 0)}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {ALL_TIMES.map((time) => {
+                    const hasUsage = product.usageLevels !== undefined;
+                    const defaultActive = product.timeOfDay.includes(time);
+                    const fillValue = hasUsage ? (product.usageLevels[time] || 0) : (defaultActive ? 100 : 0);
+                    const isActive = hasUsage ? fillValue > 0 : defaultActive;
+                    const cfg = timeOfDayConfig[time];
+                    return (
+                      <div key={time} className="flex flex-col items-center gap-1.5">
+                        <span className={`text-2xl transition-all ${isActive ? "opacity-100" : "opacity-20 grayscale"}`}>
+                          {cfg.icon}
+                        </span>
+                        <span className={`text-xs text-center ${isActive ? "text-white/80" : "text-white/30"}`}>
+                          {time}
+                        </span>
+                        <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${cfg.color} transition-all duration-700`}
+                            style={{ width: `${hasUsage ? fillValue : (defaultActive ? 100 : 0)}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── CTA Button ────────────────────────────────────────────────── */}
             <motion.div
               variants={fadeUp}
-              className="flex flex-col sm:flex-row gap-4 pt-2"
+              className="pt-2"
             >
-              <button
-                id="btn-buy-now"
-                className="flex-1 gold-gradient text-black font-bold py-4 px-8 rounded-2xl text-base tracking-wide shadow-lg hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer"
-              >
-                Comprar ahora
-              </button>
-
               <a
                 id="btn-whatsapp"
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-3 border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold py-4 px-8 rounded-2xl text-base tracking-wide transition-all duration-200 active:scale-95"
+                className="w-full flex items-center justify-center gap-3 gold-gradient text-black font-bold py-4 px-8 rounded-2xl text-base tracking-wide shadow-lg hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer"
               >
                 {/* WhatsApp icon */}
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5 text-green-400"
+                  className="w-6 h-6 text-black"
                   aria-hidden="true"
                 >
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
-                Consultar por WhatsApp
+                Comprar por WhatsApp
               </a>
             </motion.div>
           </motion.div>
@@ -244,53 +298,4 @@ export default function ProductDetailPage() {
   );
 }
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
 
-function ScentColumn({
-  label,
-  notes,
-  color,
-}: {
-  label: string;
-  notes: string[];
-  color: string;
-}) {
-  return (
-    <div
-      className={`bg-gradient-to-b ${color} to-white/5 border border-white/10 rounded-2xl p-3 flex flex-col gap-2`}
-    >
-      <p className="text-white/40 text-xs uppercase tracking-widest font-semibold text-center">
-        {label}
-      </p>
-      <div className="flex flex-col gap-1.5">
-        {notes.map((note) => (
-          <span
-            key={note}
-            className="text-xs text-white/80 bg-white/10 px-2 py-1 rounded-lg text-center leading-tight"
-          >
-            {note}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function InfoCard({
-  icon,
-  label,
-  value,
-}: {
-  icon: string;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col gap-1">
-      <p className="text-white/40 text-xs uppercase tracking-widest">{label}</p>
-      <p className="text-white text-sm font-semibold flex items-center gap-1.5">
-        <span className="text-gold">{icon}</span> {value}
-      </p>
-    </div>
-  );
-}

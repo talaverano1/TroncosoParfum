@@ -26,12 +26,12 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         </span>
       )}
 
-      <div className="relative h-64 w-full overflow-hidden bg-black-light">
+      <div className="relative h-80 md:h-96 w-full overflow-hidden bg-[#111]">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-contain group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>

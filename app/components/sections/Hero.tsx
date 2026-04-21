@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -57,17 +58,21 @@ export default function Hero() {
           Fragancias premium que definen tu estilo
         </motion.p>
 
-        <motion.a
-          href="#coleccion"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
-          className="inline-block bg-gold text-black font-semibold px-12 py-4 rounded-full text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(201,169,110,0.3)] hover:bg-gold-light transition-all duration-300"
         >
-          Comprar ahora
-        </motion.a>
+          <Link
+            id="hero-btn-catalog"
+            href="/catalogo"
+            className="inline-block gold-gradient text-black font-semibold px-12 py-4 rounded-full text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(201,169,110,0.3)] hover:opacity-90 transition-all duration-300"
+          >
+            Ver catálogo
+          </Link>
+        </motion.div>
       </div>
 
       {/* Bottom fade */}

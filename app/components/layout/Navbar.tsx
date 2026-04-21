@@ -1,49 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Colección", href: "#coleccion" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/" },
+  { label: "Colección", href: "/catalogo" },
+  { label: "Nosotros", href: "/#nosotros" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-effect py-3" : "bg-transparent py-5"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A] border-b border-gold/10 py-3">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#inicio"
+        <Link
+          href="/"
           className="font-[family-name:var(--font-heading)] text-white text-xl md:text-2xl tracking-wide"
         >
           Troncoso <span className="text-gold">Perfumes</span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors duration-300"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -71,18 +61,18 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-effect overflow-hidden"
+            className="md:hidden bg-[#0A0A0A] border-t border-gold/10 overflow-hidden"
           >
             <ul className="flex flex-col items-center gap-4 py-6">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,3 +1,14 @@
+export interface ScentNote {
+  name: string;
+  intensity: number; // 1–10
+}
+
+export interface MainAccord {
+  name: string;
+  percentage: number; // 0–100
+  color: string; // tailwind bg class for the bar
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -7,11 +18,10 @@ export interface Product {
   price: number;
   image: string;
   isBestseller: boolean;
-  scentNotes: {
-    top: string[];
-    heart: string[];
-    base: string[];
-  };
+  scentNotes: ScentNote[];
+  mainAccords: MainAccord[];
+  timeOfDay: ("Día" | "Noche")[];
+  usageLevels?: Record<string, number>;
   style: string;
   climate: string[];
   occasions: string[];
@@ -20,18 +30,37 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 1,
-    name: "Noir Élégance",
+    name: "Soberano",
     gender: "Masculino",
     description: "Notas amaderadas con un toque de vainilla y ámbar",
     fullDescription:
-      "Noir Élégance es un homenaje a la sofisticación nocturna. Su apertura intensa de bergamota da paso a un corazón de madera de cedro y violeta, que se asienta sobre una base cálida de vainilla bourbon, ámbar gris y musgo. Una fragancia para el hombre que busca dejar una huella imborrable.",
-    price: 12500,
-    image: "/hero-bg.png",
+      "Eleva tu presencia con Soberano. Elegante, intenso, inolvidable. Arranca fresco con bergamota y mandarina. Toma caracter con pimienta. Y se queda... con maderas y haba tonka durante horas. Alta duracion real. Presencia que no se pierde",
+    price: 52500,
+    image: "/SoberanoPerfume.png",
     isBestseller: true,
-    scentNotes: {
-      top: ["Bergamota", "Pimienta Negra"],
-      heart: ["Cedro", "Violeta", "Cuero"],
-      base: ["Vainilla", "Ámbar", "Musgo de Roble"],
+    scentNotes: [
+      { name: "Mandarina", intensity: 9 },
+      { name: "Bergamota", intensity: 8 },
+      { name: "Pimienta", intensity: 7 },
+      { name: "Haba Tonka", intensity: 8 },
+      { name: "Cedro", intensity: 9 },
+      { name: "Almizcle", intensity: 6 },
+    ],
+    mainAccords: [
+      { name: "Cítrico Chispeante", percentage: 95, color: "bg-orange-500" },
+      { name: "Amaderado", percentage: 85, color: "bg-amber-800" },
+      { name: "Ambarado", percentage: 80, color: "bg-yellow-600" },
+      { name: "Especiado (Pimienta)", percentage: 75, color: "bg-zinc-500" },
+      { name: "Dulce (Vainilla/Haba Tonka)", percentage: 60, color: "bg-amber-200" },
+    ],
+    timeOfDay: ["Día"], // updated slightly to reflect new usage logic
+    usageLevels: {
+      Primavera: 90,
+      Verano: 90,
+      Otoño: 90,
+      Invierno: 10,
+      Día: 50,
+      Noche: 10,
     },
     style: "Seductor & Sofisticado",
     climate: ["Otoño", "Invierno"],
@@ -47,11 +76,25 @@ export const products: Product[] = [
     price: 9800,
     image: "/hero-bg.png",
     isBestseller: false,
-    scentNotes: {
-      top: ["Lichi", "Pera", "Bergamota"],
-      heart: ["Rosa de Bulgaria", "Jazmín", "Iris"],
-      base: ["Sándalo Blanco", "Almizcle", "Pachulí"],
-    },
+    scentNotes: [
+      { name: "Lichi", intensity: 7 },
+      { name: "Pera", intensity: 6 },
+      { name: "Bergamota", intensity: 8 },
+      { name: "Rosa de Bulgaria", intensity: 10 },
+      { name: "Jazmín", intensity: 9 },
+      { name: "Iris", intensity: 7 },
+      { name: "Sándalo Blanco", intensity: 8 },
+      { name: "Almizcle", intensity: 6 },
+      { name: "Pachulí", intensity: 5 },
+    ],
+    mainAccords: [
+      { name: "Floral", percentage: 98, color: "bg-rose-500" },
+      { name: "Frutal", percentage: 80, color: "bg-pink-400" },
+      { name: "Polvoroso", percentage: 65, color: "bg-rose-300" },
+      { name: "Amaderado", percentage: 55, color: "bg-amber-700" },
+      { name: "Almizcle", percentage: 45, color: "bg-stone-400" },
+    ],
+    timeOfDay: ["Día"],
     style: "Romántico & Floral",
     climate: ["Primavera", "Verano"],
     occasions: ["Uso Diario", "Primeras Citas", "Celebraciones"],
@@ -66,11 +109,25 @@ export const products: Product[] = [
     price: 15200,
     image: "/hero-bg.png",
     isBestseller: true,
-    scentNotes: {
-      top: ["Azafrán", "Cardamomo", "Bergamota"],
-      heart: ["Oud", "Rosa Turca", "Resina"],
-      base: ["Sándalo de Mysore", "Ámbar", "Benjuí"],
-    },
+    scentNotes: [
+      { name: "Azafrán", intensity: 9 },
+      { name: "Cardamomo", intensity: 8 },
+      { name: "Bergamota", intensity: 7 },
+      { name: "Oud", intensity: 10 },
+      { name: "Rosa Turca", intensity: 8 },
+      { name: "Resina", intensity: 7 },
+      { name: "Sándalo de Mysore", intensity: 9 },
+      { name: "Ámbar", intensity: 8 },
+      { name: "Benjuí", intensity: 6 },
+    ],
+    mainAccords: [
+      { name: "Oud", percentage: 100, color: "bg-yellow-800" },
+      { name: "Ambarado", percentage: 88, color: "bg-yellow-600" },
+      { name: "Especiado", percentage: 80, color: "bg-orange-700" },
+      { name: "Resinoso", percentage: 72, color: "bg-amber-900" },
+      { name: "Floral", percentage: 50, color: "bg-rose-500" },
+    ],
+    timeOfDay: ["Noche"],
     style: "Oriental & Exótico",
     climate: ["Otoño", "Invierno"],
     occasions: ["Ocasiones Especiales", "Noches de Gala", "Arte & Cultura"],
@@ -85,11 +142,25 @@ export const products: Product[] = [
     price: 8500,
     image: "/hero-bg.png",
     isBestseller: false,
-    scentNotes: {
-      top: ["Bergamota", "Limón Siciliano", "Sal Marina"],
-      heart: ["Notas Acuáticas", "Driftwood", "Flores Blancas"],
-      base: ["Almizcle Marino", "Cedro", "Ámbar Blanco"],
-    },
+    scentNotes: [
+      { name: "Bergamota", intensity: 9 },
+      { name: "Limón Siciliano", intensity: 8 },
+      { name: "Sal Marina", intensity: 7 },
+      { name: "Notas Acuáticas", intensity: 9 },
+      { name: "Driftwood", intensity: 6 },
+      { name: "Flores Blancas", intensity: 7 },
+      { name: "Almizcle Marino", intensity: 8 },
+      { name: "Cedro", intensity: 6 },
+      { name: "Ámbar Blanco", intensity: 5 },
+    ],
+    mainAccords: [
+      { name: "Acuático", percentage: 95, color: "bg-cyan-500" },
+      { name: "Cítrico", percentage: 88, color: "bg-yellow-400" },
+      { name: "Marino", percentage: 80, color: "bg-blue-500" },
+      { name: "Fresco", percentage: 75, color: "bg-sky-400" },
+      { name: "Amaderado", percentage: 50, color: "bg-amber-700" },
+    ],
+    timeOfDay: ["Día"],
     style: "Fresco & Libre",
     climate: ["Primavera", "Verano"],
     occasions: ["Uso Diario", "Actividades al Aire Libre", "Viajes"],
@@ -104,11 +175,25 @@ export const products: Product[] = [
     price: 11000,
     image: "/hero-bg.png",
     isBestseller: true,
-    scentNotes: {
-      top: ["Pomelo", "Notas Ahumadas", "Pimienta Roja"],
-      heart: ["Vetiver Haitiano", "Geranio", "Especias Oscuras"],
-      base: ["Cuero", "Labdanum", "Madera de Guayaco"],
-    },
+    scentNotes: [
+      { name: "Pomelo", intensity: 7 },
+      { name: "Notas Ahumadas", intensity: 9 },
+      { name: "Pimienta Roja", intensity: 8 },
+      { name: "Vetiver Haitiano", intensity: 10 },
+      { name: "Geranio", intensity: 6 },
+      { name: "Especias Oscuras", intensity: 9 },
+      { name: "Cuero", intensity: 8 },
+      { name: "Labdanum", intensity: 7 },
+      { name: "Madera de Guayaco", intensity: 8 },
+    ],
+    mainAccords: [
+      { name: "Terroso", percentage: 92, color: "bg-stone-500" },
+      { name: "Ahumado", percentage: 85, color: "bg-slate-600" },
+      { name: "Cuero", percentage: 78, color: "bg-amber-800" },
+      { name: "Especiado", percentage: 70, color: "bg-orange-700" },
+      { name: "Amaderado", percentage: 65, color: "bg-amber-700" },
+    ],
+    timeOfDay: ["Noche"],
     style: "Potente & Misterioso",
     climate: ["Otoño", "Invierno"],
     occasions: ["Trabajo Ejecutivo", "Eventos Nocturnos", "Conferencias"],
@@ -123,11 +208,25 @@ export const products: Product[] = [
     price: 9200,
     image: "/hero-bg.png",
     isBestseller: false,
-    scentNotes: {
-      top: ["Mandarina", "Neroli", "Bergamota Rosa"],
-      heart: ["Azahar", "Magnolia", "Peonía"],
-      base: ["Musk Blanco", "Madera de Cachemira", "Vainilla Suave"],
-    },
+    scentNotes: [
+      { name: "Mandarina", intensity: 8 },
+      { name: "Neroli", intensity: 9 },
+      { name: "Bergamota Rosa", intensity: 7 },
+      { name: "Azahar", intensity: 10 },
+      { name: "Magnolia", intensity: 8 },
+      { name: "Peonía", intensity: 7 },
+      { name: "Musk Blanco", intensity: 6 },
+      { name: "Madera de Cachemira", intensity: 7 },
+      { name: "Vainilla Suave", intensity: 5 },
+    ],
+    mainAccords: [
+      { name: "Floral Blanco", percentage: 96, color: "bg-pink-200" },
+      { name: "Cítrico", percentage: 82, color: "bg-yellow-400" },
+      { name: "Almizcle", percentage: 68, color: "bg-stone-400" },
+      { name: "Polvoroso", percentage: 55, color: "bg-rose-300" },
+      { name: "Amaderado", percentage: 45, color: "bg-amber-700" },
+    ],
+    timeOfDay: ["Día"],
     style: "Delicado & Natural",
     climate: ["Primavera", "Verano"],
     occasions: ["Uso Diario", "Brunch", "Jardines & Naturaleza"],
