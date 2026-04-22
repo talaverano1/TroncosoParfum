@@ -7,6 +7,7 @@ import WhyChooseUs from "@/app/components/sections/WhyChooseUs";
 import Bestsellers from "@/app/components/sections/Bestsellers";
 import Testimonials from "@/app/components/sections/Testimonials";
 import FinalCTA from "@/app/components/sections/FinalCTA";
+import PerfumeAds from "@/app/components/sections/PerfumeAds";
 
 // "@/" es un atajo configurado en Next.js que apunta a la raíz del proyecto.
 
@@ -17,12 +18,13 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <TrustBar />
-        <FeaturedProducts />
-        <WhyChooseUs />
-        <Bestsellers />
-        <Testimonials />
-        <FinalCTA />
+        <PerfumeAds />
+        {/*<TrustBar />*/}
+        {/*<FeaturedProducts />*/}
+        {/*<WhyChooseUs />*/}
+        {/*<Bestsellers />*/}
+        {/*<Testimonials />*/}
+        {/*<FinalCTA />*/}
       </main>
       <Footer />
     </>
