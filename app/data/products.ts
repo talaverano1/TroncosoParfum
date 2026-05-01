@@ -15,6 +15,7 @@ export interface Product {
   gender: "Masculino" | "Femenino" | "Unisex";
   description: string;
   fullDescription: string;
+  images?: string[]; // multiple images for carousel; falls back to [image]
   price: number;
   image: string;
   isBestseller: boolean;
@@ -34,9 +35,14 @@ export const products: Product[] = [
     gender: "Masculino",
     description: "Notas amaderadas con un toque de vainilla y ámbar",
     fullDescription:
-      "Eleva tu presencia con Soberano. Elegante, intenso, inolvidable. Arranca fresco con bergamota y mandarina. Toma caracter con pimienta. Y se queda... con maderas y haba tonka durante horas. Alta duracion real. Presencia que no se pierde",
+      "Frescura chispeante de mandarina y bergamota que impacta desde el primer segundo.\n"
+      + "El sándalo y el cedro le dan una profundidad masculina, elegante y segura.\n"
+      + "Cierra con vainilla y haba tonka: un fondo cálido, adictivo y duradero.\n"
+      + "No es un perfume más.\n"
+      + "Es presencia que se siente.",
     price: 52500,
     image: "/SoberanoPerfume.png",
+    images: ["/SoberanoPerfume.png", "/SoberanoPublicidad.png"],
     isBestseller: true,
     scentNotes: [
       { name: "Mandarina", intensity: 9 },
@@ -47,11 +53,15 @@ export const products: Product[] = [
       { name: "Almizcle", intensity: 6 },
     ],
     mainAccords: [
-      { name: "Cítrico Chispeante", percentage: 95, color: "bg-orange-600" },
-      { name: "Amaderado", percentage: 85, color: "bg-amber-800" },
-      { name: "Ambarado", percentage: 80, color: "bg-yellow-700" },
-      { name: "Especiado (Pimienta)", percentage: 75, color: "bg-zinc-600" },
-      { name: "Dulce (Vainilla/Haba Tonka)", percentage: 60, color: "bg-amber-600" },
+      { name: "Fresco Especiado", percentage: 100, color: "bg-[#9bc53d]" },
+      { name: "Ámbar", percentage: 70, color: "bg-[#9a4d25]" },
+      { name: "Cítrico", percentage: 68, color: "bg-[#cddc39]" },
+      { name: "Aromático", percentage: 55, color: "bg-[#388e83]" },
+      { name: "Almizclado", percentage: 50, color: "bg-[#9c8e9c]" },
+      { name: "Amaderado", percentage: 45, color: "bg-[#6d4c33]" },
+      { name: "Lavanda", percentage: 42, color: "bg-[#6a537f]" },
+      { name: "Herbal", percentage: 40, color: "bg-[#54735c]" },
+      { name: "Cálido Especiado", percentage: 38, color: "bg-[#8b311c]" },
     ],
     timeOfDay: ["Día"], // updated slightly to reflect new usage logic
     usageLevels: {
