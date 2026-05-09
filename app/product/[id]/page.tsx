@@ -114,6 +114,24 @@ export default function ProductDetailPage() {
     exit: (d: number) => ({ x: d > 0 ? "-100%" : "100%", opacity: 0, transition: { duration: 0.35, ease: "easeIn" } }),
   };
 
+  // Scroll lightbox to the active image (without animation) right when it opens
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    // Use requestAnimationFrame so the DOM has rendered before we scroll
+    const raf = requestAnimationFrame(() => {
+      if (!lightboxScrollRef.current) return;
+      const container = lightboxScrollRef.current;
+      const child = container.children[activeImg + 1] as HTMLElement; // +1 for left spacer
+      if (child) {
+        container.scrollTo({
+          left: child.offsetLeft - container.clientWidth / 2 + child.clientWidth / 2,
+          behavior: "instant" as ScrollBehavior,
+        });
+      }
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [lightboxOpen]); // intentionally omit activeImg — we only want this on open
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!lightboxOpen) return;
