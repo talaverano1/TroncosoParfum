@@ -21,40 +21,40 @@ const stagger: Variants = {
 
 // ─── Filter Config ────────────────────────────────────────────────────────────
 const GENDERS = [
-  { key: "all",       label: "Todos",  icon: "✦" },
+  { key: "all", label: "Todos", icon: "✦" },
   { key: "Masculino", label: "Hombre", icon: "♂" },
-  { key: "Femenino",  label: "Mujer",  icon: "♀" },
-  { key: "Unisex",    label: "Unisex", icon: "◈" },
+  { key: "Femenino", label: "Mujer", icon: "♀" },
+  { key: "Unisex", label: "Unisex", icon: "◈" },
 ] as const;
 
 const TIME_FILTERS = [
-  { key: "all",   label: "Cualquier hora", icon: "🕐" },
-  { key: "Día",   label: "De Día",         icon: "☀️" },
-  { key: "Noche", label: "De Noche",       icon: "🌙" },
+  { key: "all", label: "Cualquier hora", icon: "🕐" },
+  { key: "Día", label: "De Día", icon: "☀️" },
+  { key: "Noche", label: "De Noche", icon: "🌙" },
 ] as const;
 
 const SEASON_FILTERS = [
-  { key: "all",       label: "Toda estación", icon: "🗓" },
-  { key: "Primavera", label: "Primavera",     icon: "🌿" },
-  { key: "Verano",    label: "Verano",        icon: "☂️" },
-  { key: "Otoño",     label: "Otoño",         icon: "🍂" },
-  { key: "Invierno",  label: "Invierno",      icon: "❄️" },
+  { key: "all", label: "Toda estación", icon: "🗓" },
+  { key: "Primavera", label: "Primavera", icon: "🌿" },
+  { key: "Verano", label: "Verano", icon: "☂️" },
+  { key: "Otoño", label: "Otoño", icon: "🍂" },
+  { key: "Invierno", label: "Invierno", icon: "❄️" },
 ] as const;
 
 type GenderKey = typeof GENDERS[number]["key"];
-type TimeKey   = typeof TIME_FILTERS[number]["key"];
+type TimeKey = typeof TIME_FILTERS[number]["key"];
 type SeasonKey = typeof SEASON_FILTERS[number]["key"];
 
 const GENDER_SECTIONS: Array<{ key: Exclude<GenderKey, "all">; label: string; accent: string; dot: string }> = [
-  { key: "Masculino", label: "Hombre",  accent: "text-blue-300",  dot: "bg-blue-400" },
-  { key: "Femenino",  label: "Mujer",   accent: "text-rose-300",  dot: "bg-rose-400" },
-  { key: "Unisex",    label: "Unisex",  accent: "text-amber-300", dot: "bg-amber-400" },
+  { key: "Masculino", label: "Hombre", accent: "text-blue-300", dot: "bg-blue-400" },
+  { key: "Femenino", label: "Mujer", accent: "text-rose-300", dot: "bg-rose-400" },
+  { key: "Unisex", label: "Unisex", accent: "text-amber-300", dot: "bg-amber-400" },
 ];
 
 // Match a product against the active filters
 function matchesFilters(p: Product, time: TimeKey, season: SeasonKey): boolean {
-  const timeOk   = time   === "all" || p.timeOfDay.includes(time as "Día" | "Noche");
-  const seasonOk = season === "all" || p.climate.includes(season);
+  const timeOk = time === "all" || (p.usageLevels ? p.usageLevels[time as string] >= 2 : false);
+  const seasonOk = season === "all" || (p.usageLevels ? p.usageLevels[season as string] >= 2 : false);
   return timeOk && seasonOk;
 }
 
@@ -65,11 +65,10 @@ function FilterChip({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-250 whitespace-nowrap border ${
-        active
-          ? "bg-gold text-black border-gold shadow-md shadow-gold/20"
-          : "bg-white/5 text-white/50 border-white/10 hover:bg-white/10 hover:text-white/80"
-      }`}
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-250 whitespace-nowrap border ${active
+        ? "bg-gold text-black border-gold shadow-md shadow-gold/20"
+        : "bg-white/5 text-white/50 border-white/10 hover:bg-white/10 hover:text-white/80"
+        }`}
     >
       <span className="text-sm leading-none">{icon}</span>
       <span>{label}</span>
@@ -80,7 +79,7 @@ function FilterChip({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function CatalogoPage() {
   const [activeGender, setActiveGender] = useState<GenderKey>("all");
-  const [activeTime,   setActiveTime]   = useState<TimeKey>("all");
+  const [activeTime, setActiveTime] = useState<TimeKey>("all");
   const [activeSeason, setActiveSeason] = useState<SeasonKey>("all");
 
   const hasActiveFilters = activeTime !== "all" || activeSeason !== "all";
@@ -118,7 +117,7 @@ export default function CatalogoPage() {
       .filter((g) => g.key === activeGender)
       .map((g) => ({
         ...g,
-        products: sortProducts(baseFiltered.filter((p) => p.gender === g.key)),
+        products: sortProducts(baseFiltered.filter((p) => p.gender === g.key || p.gender === "Unisex")),
       }))
       .filter((s) => s.products.length > 0);
   }, [activeGender, baseFiltered]);
@@ -154,13 +153,13 @@ export default function CatalogoPage() {
             className="text-center mb-14"
           >
             <p className="text-gold text-xs uppercase tracking-[0.4em] mb-4 font-medium">
-              Troncoso Perfumes
+              Troncoso Parfum
             </p>
             <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-6xl font-bold text-white mb-4">
               Nuestra Colección
             </h1>
             <p className="text-white/40 text-base md:text-lg max-w-xl mx-auto">
-              {products.length} fragancias artesanales pensadas para cada momento y personalidad.
+              {products.length} fragancias pensadas para cada momento y personalidad.
             </p>
             <div className="flex items-center justify-center gap-4 mt-8">
               <div className="h-px w-24 bg-gradient-to-r from-transparent to-gold/60" />
@@ -185,11 +184,10 @@ export default function CatalogoPage() {
                     key={key}
                     id={`gender-tab-${key}`}
                     onClick={() => setActiveGender(key)}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-250 ${
-                      activeGender === key
-                        ? "bg-gold text-black shadow-md"
-                        : "text-white/50 hover:text-white/80 hover:bg-white/5"
-                    }`}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-250 ${activeGender === key
+                      ? "bg-gold text-black shadow-md"
+                      : "text-white/50 hover:text-white/80 hover:bg-white/5"
+                      }`}
                   >
                     <span>{icon}</span>
                     <span className="hidden sm:inline">{label}</span>

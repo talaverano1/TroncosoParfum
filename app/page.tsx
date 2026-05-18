@@ -13,6 +13,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <PerfumeAds />
       </main>
       <Footer />
     </>

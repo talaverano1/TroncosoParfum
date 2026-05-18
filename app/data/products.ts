@@ -14,6 +14,8 @@ export interface Longevity {
   label: string;   // e.g. "Larga duración"
 }
 
+export type SizeKey = "5 ml" | "50 ml";
+
 export interface Product {
   id: number;
   name: string;
@@ -21,9 +23,12 @@ export interface Product {
   description: string;
   fullDescription: string;
   images?: string[]; // multiple images for carousel; falls back to [image]
-  price: number;
+  /** Regular prices for each size */
+  prices: Record<SizeKey, number>;
   image: string;
   isBestseller: boolean;
+  /** Discounted prices per size. A size is considered on sale when discountPrices[size] < prices[size]. */
+  discountPrices?: Partial<Record<SizeKey, number>>;
   scentNotes: ScentNote[];
   mainAccords: MainAccord[];
   timeOfDay: ("Día" | "Noche")[];
@@ -47,10 +52,17 @@ export const products: Product[] = [
       + "Cierra con vainilla y haba tonka: un fondo cálido, adictivo y duradero.\n"
       + "No es un perfume más.\n"
       + "Es presencia que se siente.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Soberano/Soberano_Img_1.jpg",
     images: ["/Soberano/Soberano_Img_1.jpg", "/Soberano/Soberano_Img_2.jpg"],
     isBestseller: true,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Mandarina", intensity: 9 },
       { name: "Bergamota", intensity: 8 },
@@ -89,7 +101,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: "Salvatore",
-    gender: "Masculino",
+    gender: "Unisex",
     description: "Cítricos vibrantes que evolucionan hacia una base cálida e irresistible",
     fullDescription:
       "Cítricos vibrantes que despiertan los sentidos desde el primer instante.\n"
@@ -97,10 +109,17 @@ export const products: Product[] = [
       + "Y al final… vainilla y ámbar gris, cálidos y sensuales, que se funden con la piel.\n"
       + "Fresco al inicio.\n"
       + "Irresistible al final.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Salvatore/Salvatore_Img_1.jpg",
     images: ["/Salvatore/Salvatore_Img_1.jpg"],
     isBestseller: false,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Cítricos", intensity: 10 },
       { name: "Frutas Tropicales", intensity: 9 },
@@ -120,17 +139,17 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 3,
-      Verano: 3,
-      Otoño: 2,
-      Invierno: 1,
-      Día: 3,
-      Noche: 2,
+      Primavera: 1,
+      Verano: 2,
+      Otoño: 1,
+      Invierno: 3,
+      Día: 2,
+      Noche: 3,
     },
     style: "Fresco & Seductor",
     climate: ["Primavera", "Verano"],
     occasions: ["Uso Diario", "Citas", "Salidas Nocturnas"],
-    longevity: { hours: 9, label: "Larga duración" },
+    longevity: { hours: 12, label: "Larga duración" },
   },
 
   // ── 3. Indomable ─────────────────────────────────────────────────────────────
@@ -145,10 +164,17 @@ export const products: Product[] = [
       + "Vetiver, trufa, cedro y roble cierran con una profundidad oscura, intensa y adictiva.\n"
       + "Fresco al inicio…\n"
       + "pero termina siendo puro magnetismo.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Indomable/Indomable_Img_1.jpg",
     images: ["/Indomable/Indomable_Img_1.jpg"],
     isBestseller: true,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Lavanda", intensity: 9 },
       { name: "Pimienta Rosa", intensity: 8 },
@@ -171,68 +197,17 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 2,
-      Verano: 1,
-      Otoño: 3,
-      Invierno: 3,
-      Día: 2,
-      Noche: 3,
+      Primavera: 1,
+      Verano: 3,
+      Otoño: 1,
+      Invierno: 2,
+      Día: 3,
+      Noche: 2,
     },
     style: "Magnético & Intenso",
     climate: ["Otoño", "Invierno"],
     occasions: ["Salidas Nocturnas", "Eventos Formales", "Trabajo Ejecutivo"],
     longevity: { hours: 11, label: "Muy larga duración" },
-  },
-
-  // ── 4. Enigma ────────────────────────────────────────────────────────────────
-  {
-    id: 4,
-    name: "Enigma",
-    gender: "Masculino",
-    description: "Absenta y lavanda que cierran en vainilla negra y almizcle cálido",
-    fullDescription:
-      "Absenta, anís e hinojo abren con un toque oscuro y provocador.\n"
-      + "La lavanda equilibra con una frescura elegante y adictiva.\n"
-      + "Vainilla negra y almizcle cierran cálidos, sensuales… pegados a la piel.\n"
-      + "Dulce, especiado y magnético.\n"
-      + "De esos que no se olvidan.",
-    price: 52500,
-    image: "/Enigma/Enigma_Img_1.jpg",
-    images: ["/Enigma/Enigma_Img_1.jpg"],
-    isBestseller: false,
-    scentNotes: [
-      { name: "Absenta", intensity: 9 },
-      { name: "Anís", intensity: 8 },
-      { name: "Hinojo", intensity: 7 },
-      { name: "Lavanda", intensity: 8 },
-      { name: "Vainilla Negra", intensity: 9 },
-      { name: "Almizcle", intensity: 8 },
-    ],
-    mainAccords: [
-      { name: "Aromático", percentage: 100, color: "bg-[#1a5e50]" },
-      { name: "Avainillado", percentage: 90, color: "bg-[#6e5a1a]" },
-      { name: "Especiado Suave", percentage: 80, color: "bg-[#6a2e0c]" },
-      { name: "Anís", percentage: 70, color: "bg-[#2e5028]" },
-      { name: "Lavanda", percentage: 65, color: "bg-[#4a3878]" },
-      { name: "Almizclado", percentage: 60, color: "bg-[#4a3848]" },
-      { name: "Atalcado", percentage: 58, color: "bg-[#524a2e]" },
-      { name: "Amargo", percentage: 55, color: "bg-[#424e0c]" },
-      { name: "Dulce", percentage: 50, color: "bg-[#9a1818]" },
-      { name: "Fresco Especiado", percentage: 35, color: "bg-[#2e6b14]" },
-    ],
-    timeOfDay: ["Noche"],
-    usageLevels: {
-      Primavera: 1,
-      Verano: 1,
-      Otoño: 3,
-      Invierno: 3,
-      Día: 1,
-      Noche: 3,
-    },
-    style: "Oscuro & Magnético",
-    climate: ["Otoño", "Invierno"],
-    occasions: ["Veladas Nocturnas", "Citas Románticas", "Ocasiones Especiales"],
-    longevity: { hours: 12, label: "Muy larga duración" },
   },
 
   // ── 5. Tropical ──────────────────────────────────────────────────────────────
@@ -247,10 +222,17 @@ export const products: Product[] = [
       + "Sándalo, haba tonka y ámbar gris se funden en la piel… dulces, profundos y adictivos.\n"
       + "Empieza fresco…\n"
       + "termina siendo pura tentación.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Tropical/Tropical_Img_1.jpg",
     images: ["/Tropical/Tropical_Img_1.jpg"],
     isBestseller: false,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Piña", intensity: 10 },
       { name: "Jengibre", intensity: 8 },
@@ -272,65 +254,17 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 3,
+      Primavera: 1,
       Verano: 3,
-      Otoño: 2,
-      Invierno: 1,
-      Día: 3,
-      Noche: 2,
+      Otoño: 1,
+      Invierno: 2,
+      Día: 1,
+      Noche: 3,
     },
     style: "Tropical & Seductor",
     climate: ["Primavera", "Verano"],
     occasions: ["Uso Diario", "Playa", "Salidas Casuales"],
-    longevity: { hours: 9, label: "Larga duración" },
-  },
-
-  // ── 6. Homme Intens ──────────────────────────────────────────────────────────
-  {
-    id: 6,
-    name: "Homme Intens",
-    gender: "Masculino",
-    description: "Geranio cítrico con haba tonka y sándalo de profundidad irresistible",
-    fullDescription:
-      "Geranio fresco con un toque cítrico abre limpio… pero con intención.\n"
-      + "Haba tonka en el corazón: cálida, envolvente… despierta el anhelo.\n"
-      + "Sándalo en el fondo: profundo, firme… pura intensidad que se siente.\n"
-      + "No es solo presencia.\n"
-      + "Es poder que se percibe…\n"
-      + "y deseo que no se apaga.",
-    price: 52500,
-    image: "/hero-bg.png",
-    isBestseller: false,
-    scentNotes: [
-      { name: "Geranio", intensity: 9 },
-      { name: "Cítricos", intensity: 8 },
-      { name: "Haba Tonka", intensity: 10 },
-      { name: "Sándalo", intensity: 9 },
-      { name: "Almizcle", intensity: 7 },
-    ],
-    mainAccords: [
-      { name: "Caramelo", percentage: 100, color: "bg-[#6a4010]" },
-      { name: "Aromático", percentage: 88, color: "bg-[#1a5e50]" },
-      { name: "Dulce", percentage: 78, color: "bg-[#9a1818]" },
-      { name: "Cítrico", percentage: 65, color: "bg-[#526014]" },
-      { name: "Avainillado", percentage: 54, color: "bg-[#6e5a1a]" },
-      { name: "Ámbar", percentage: 44, color: "bg-[#7a2e0c]" },
-      { name: "Especiado Suave", percentage: 35, color: "bg-[#6a2e0c]" },
-      { name: "Amaderado", percentage: 35, color: "bg-[#4a2c14]" },
-    ],
-    timeOfDay: ["Día", "Noche"],
-    usageLevels: {
-      Primavera: 2,
-      Verano: 2,
-      Otoño: 3,
-      Invierno: 3,
-      Día: 2,
-      Noche: 3,
-    },
-    style: "Intenso & Poderoso",
-    climate: ["Otoño", "Invierno"],
-    occasions: ["Trabajo Ejecutivo", "Eventos Formales", "Citas"],
-    longevity: { hours: 11, label: "Muy larga duración" },
+    longevity: { hours: 10, label: "Larga duración" },
   },
 
   // ── 7. Campeones ─────────────────────────────────────────────────────────────
@@ -346,10 +280,17 @@ export const products: Product[] = [
       + "No es solo un aroma.\n"
       + "Es creer hasta el final.\n"
       + "CAMPEONES.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Campeones/Campeones_Img_1.jpg",
     images: ["/Campeones/Campeones_Img_1.jpg"],
     isBestseller: true,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Lavanda", intensity: 9 },
       { name: "Cardamomo", intensity: 8 },
@@ -373,9 +314,9 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 2,
+      Primavera: 1,
       Verano: 1,
-      Otoño: 3,
+      Otoño: 1,
       Invierno: 3,
       Día: 2,
       Noche: 3,
@@ -399,10 +340,17 @@ export const products: Product[] = [
       + "Sutil al inicio…\n"
       + "pero de esos aromas que te desarman, te confunden…\n"
       + "y te hacen desear lo que ya no podés tener.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Amor y Luz/AmorYLuz_Img_1.jpg",
     images: ["/Amor y Luz/AmorYLuz_Img_1.jpg"],
     isBestseller: false,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Champagne Rosé", intensity: 9 },
       { name: "Pimienta Rosa", intensity: 7 },
@@ -421,9 +369,9 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 3,
+      Primavera: 1,
       Verano: 3,
-      Otoño: 2,
+      Otoño: 1,
       Invierno: 1,
       Día: 3,
       Noche: 2,
@@ -431,7 +379,7 @@ export const products: Product[] = [
     style: "Romántico & Adictivo",
     climate: ["Primavera", "Verano"],
     occasions: ["Citas", "Uso Diario", "Celebraciones"],
-    longevity: { hours: 8, label: "Larga duración" },
+    longevity: { hours: 11, label: "Larga duración" },
   },
 
   // ── 9. Clásico Blush ─────────────────────────────────────────────────────────
@@ -446,10 +394,17 @@ export const products: Product[] = [
       + "Vainilla y cumarina quedan en la piel… cálidas, adictivas, imposibles de olvidar.\n"
       + "Un aroma que se queda…\n"
       + "como esos recuerdos que vuelven cuando menos lo esperás.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/Clasico Blush/ClasicoBlush_Img_1.jpg",
     images: ["/Clasico Blush/ClasicoBlush_Img_1.jpg"],
     isBestseller: false,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Bergamota", intensity: 8 },
       { name: "Almendra", intensity: 9 },
@@ -472,17 +427,17 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 3,
-      Verano: 2,
-      Otoño: 3,
+      Primavera: 1,
+      Verano: 3,
+      Otoño: 1,
       Invierno: 2,
-      Día: 3,
-      Noche: 2,
+      Día: 2,
+      Noche: 3,
     },
     style: "Delicado & Femenino",
     climate: ["Primavera", "Otoño"],
     occasions: ["Uso Diario", "Trabajo", "Citas"],
-    longevity: { hours: 9, label: "Larga duración" },
+    longevity: { hours: 10, label: "Larga duración" },
   },
 
   // ── 10. Regina ───────────────────────────────────────────────────────────────
@@ -497,9 +452,16 @@ export const products: Product[] = [
       + "Haba tonka, cacao, vainilla, praliné, ámbar y maderas se funden en la piel… cálidos, intensos y memorables.\n"
       + "Un aroma que se vuelve costumbre…\n"
       + "y termina siendo un recuerdo del que no te soltás.",
-    price: 52500,
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 64000,
+    },
     image: "/hero-bg.png",
     isBestseller: true,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
       { name: "Café", intensity: 8 },
@@ -523,9 +485,9 @@ export const products: Product[] = [
     ],
     timeOfDay: ["Día", "Noche"],
     usageLevels: {
-      Primavera: 2,
-      Verano: 1,
-      Otoño: 3,
+      Primavera: 1,
+      Verano: 2,
+      Otoño: 1,
       Invierno: 3,
       Día: 2,
       Noche: 3,
@@ -533,6 +495,6 @@ export const products: Product[] = [
     style: "Elegante & Memorable",
     climate: ["Otoño", "Invierno"],
     occasions: ["Ocasiones Especiales", "Cenas", "Eventos de Gala"],
-    longevity: { hours: 13, label: "Excepcional" },
+    longevity: { hours: 12, label: "Larga duración" },
   },
 ];
