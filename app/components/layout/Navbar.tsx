@@ -21,7 +21,7 @@ export default function Navbar() {
           href="/"
           className="font-[family-name:var(--font-heading)] text-white text-xl md:text-2xl tracking-wide"
         >
-          Troncoso <span className="text-gold">Perfumes</span>
+          Troncoso <span className="text-gold">Parfum</span>
         </Link>
 
         {/* Desktop links */}

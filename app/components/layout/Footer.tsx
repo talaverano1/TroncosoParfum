@@ -1,8 +1,7 @@
 const footerLinks = [
-  { label: "Tienda", href: "#coleccion" },
+  { label: "Tienda", href: "catalogo" },
   { label: "Sobre nosotros", href: "#nosotros" },
   { label: "Contacto", href: "#contacto" },
-  { label: "Política de privacidad", href: "#" },
 ];
 
 const socialLinks = [
@@ -42,11 +41,11 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-3 md:gap-12 items-start">
-          
+
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <h3 className="font-[family-name:var(--font-heading)] text-lg md:text-2xl mb-1 md:mb-4">
-              Troncoso <span className="text-gold">Perfumes</span>
+              Troncoso <span className="text-gold">Parfum</span>
             </h3>
             <p className="text-gray-400 text-xs md:text-sm leading-tight md:leading-relaxed">
               Fragancias originales y premium para quienes buscan elegancia y distinción en cada detalle.
@@ -90,12 +89,12 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          
+
         </div>
 
         <div className="border-t border-white/10 mt-3 pt-2 md:mt-12 md:pt-8 text-center">
           <p className="text-gray-500 text-[10px] md:text-sm">
-            © {new Date().getFullYear()} Troncoso Perfumes. Todos los derechos reservados.
+            © {new Date().getFullYear()} Troncoso Parfum
           </p>
         </div>
       </div>
