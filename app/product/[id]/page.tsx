@@ -146,8 +146,6 @@ export default function ProductDetailPage() {
           {/* ── Full-width sections below the grid ──────────────────────────── */}
           <MainAccords accords={product.mainAccords} />
           <WhenToUse
-            climate={product.climate}
-            timeOfDay={product.timeOfDay}
             usageLevels={product.usageLevels}
           />
           <LongevityGauge longevity={product.longevity} />
