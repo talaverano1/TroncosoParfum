@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "@/app/data/products";
+import { Product } from "@/app/types/products";
+import { getDiscountInfo } from "@/app/lib/pricing";
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +12,11 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
+  const { isOnSale, displayPrice, savingsPct } = getDiscountInfo(
+    product.prices["50 ml"],
+    product.discountPrices?.["50 ml"]
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -56,31 +62,23 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           </p>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 md:gap-0 mt-auto">
-          {(() => {
-            const originalPrice = product.prices["50 ml"];
-            const discountedPrice = product.discountPrices?.["50 ml"];
-            const isOnSale = discountedPrice != null && discountedPrice < originalPrice;
-            const savingsPct = isOnSale ? Math.round((1 - discountedPrice / originalPrice) * 100) : 0;
-            return (
-              <div className="flex flex-col gap-0.5">
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="text-gold font-bold text-sm md:text-lg">
-                    ARS {(isOnSale ? discountedPrice : originalPrice).toLocaleString("es-AR")}
-                  </span>
-                  {isOnSale && (
-                    <span className="inline-flex items-center bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 text-[9px] md:text-[10px] font-bold px-1.5 py-0.5 rounded-full tracking-wide leading-none">
-                      -{savingsPct}%
-                    </span>
-                  )}
-                </div>
-                {isOnSale && (
-                  <span className="text-gray-400 text-[10px] md:text-xs line-through leading-none">
-                    ARS {originalPrice.toLocaleString("es-AR")}
-                  </span>
-                )}
-              </div>
-            );
-          })()}
+          <div className="flex flex-col gap-0.5">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-gold font-bold text-sm md:text-lg">
+                ARS {displayPrice.toLocaleString("es-AR")}
+              </span>
+              {isOnSale && (
+                <span className="inline-flex items-center bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 text-[9px] md:text-[10px] font-bold px-1.5 py-0.5 rounded-full tracking-wide leading-none">
+                  -{savingsPct}%
+                </span>
+              )}
+            </div>
+            {isOnSale && (
+              <span className="text-gray-400 text-[10px] md:text-xs line-through leading-none">
+                ARS {product.prices["50 ml"].toLocaleString("es-AR")}
+              </span>
+            )}
+          </div>
           {/* "Ver producto" button: only visible on desktop */}
           <Link
             href={`/product/${product.id}`}
