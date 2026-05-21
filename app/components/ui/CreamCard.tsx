@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Cream } from "@/app/data/products";
+import { Cream } from "@/app/types/products";
+import { getDiscountInfo } from "@/app/lib/pricing";
 
 interface CreamCardProps {
   cream: Cream;
@@ -11,12 +12,10 @@ interface CreamCardProps {
 }
 
 export default function CreamCard({ cream, index = 0 }: CreamCardProps) {
-  const isOnSale =
-    cream.discountPrice != null && cream.discountPrice < cream.price;
-  const displayPrice = isOnSale ? cream.discountPrice! : cream.price;
-  const savingsPct = isOnSale
-    ? Math.round((1 - cream.discountPrice! / cream.price) * 100)
-    : 0;
+  const { isOnSale, displayPrice, savingsPct } = getDiscountInfo(
+    cream.price,
+    cream.discountPrice
+  );
 
   return (
     <motion.div
