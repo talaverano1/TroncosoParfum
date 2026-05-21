@@ -1,4 +1,4 @@
-// ─── Shared TypeScript interfaces for the Troncoso Perfumes data model ────────
+// ─── Interfaces compartidas para el modelo de datos ────────
 
 export interface ScentNote {
   name: string;
@@ -8,7 +8,7 @@ export interface ScentNote {
 export interface MainAccord {
   name: string;
   percentage: number; // 0–100
-  color: string; // tailwind bg class for the bar
+  color: string; // tailwind bg class para la barra de porcentaje, ej. "bg-green-500"
 }
 
 export interface Longevity {
@@ -33,11 +33,7 @@ export interface Product {
   discountPrices?: Partial<Record<SizeKey, number>>;
   scentNotes: ScentNote[];
   mainAccords: MainAccord[];
-  timeOfDay: ("Día" | "Noche")[];
-  usageLevels?: Record<string, number>;
-  style: string;
-  climate: string[];
-  occasions: string[];
+  usageLevels: Record<string, number>;
   longevity: Longevity;
 }
 

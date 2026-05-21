@@ -2,25 +2,21 @@
 
 import { type Product } from "@/app/types/products";
 
-const ALL_SEASONS = ["Invierno", "Primavera", "Verano", "Otoño"] as const;
-const ALL_TIMES = ["Día", "Noche"] as const;
+const ALL_SEASONS = ["Verano", "Invierno"] as const;
+const ALL_TIMES = ["Casual", "Especial"] as const;
 
 const climateConfig: Record<string, { icon: string; color: string }> = {
-  Primavera: { icon: "🌿", color: "bg-green-500" },
-  Verano: { icon: "☂️", color: "bg-pink-400" },
-  Otoño: { icon: "🍂", color: "bg-amber-600" },
+  Verano: { icon: "🔥", color: "bg-pink-400" },
   Invierno: { icon: "❄️", color: "bg-blue-400" },
 };
 
-const timeOfDayConfig: Record<string, { icon: string; color: string }> = {
-  Día: { icon: "☀️", color: "bg-yellow-400" },
-  Noche: { icon: "🌙", color: "bg-indigo-400" },
+const timeOfDayConfig: Record<string, { icon: string; color: string; label: string }> = {
+  Casual: { icon: "☀️", color: "bg-yellow-400", label: "Casual" },
+  Especial: { icon: "✨", color: "bg-indigo-400", label: "Para ocasiones especiales" },
 };
 
 interface WhenToUseProps {
-  climate: Product["climate"];
-  timeOfDay: Product["timeOfDay"];
-  usageLevels?: Product["usageLevels"];
+  usageLevels: Product["usageLevels"];
 }
 
 function UsageCell({
@@ -46,7 +42,7 @@ function UsageCell({
         {icon}
       </span>
       <span
-        className={`text-[8px] sm:text-[10px] md:text-xs text-center font-medium tracking-tighter sm:tracking-wide uppercase w-full truncate ${
+        className={`text-[8px] sm:text-[10px] md:text-[11px] text-center font-medium tracking-tighter sm:tracking-wide uppercase w-full whitespace-normal leading-tight h-6 flex items-center justify-center ${
           isActive ? "text-white/80" : "text-white/30"
         }`}
       >
@@ -62,8 +58,8 @@ function UsageCell({
   );
 }
 
-export default function WhenToUse({ climate, timeOfDay, usageLevels }: WhenToUseProps) {
-  const hasUsage = usageLevels !== undefined;
+export default function WhenToUse({ usageLevels }: WhenToUseProps) {
+ 
 
   return (
     <div className="mt-8 md:mt-12 space-y-3 md:space-y-4">
@@ -71,12 +67,11 @@ export default function WhenToUse({ climate, timeOfDay, usageLevels }: WhenToUse
         <span>🕐</span> Cuándo Usarlo
       </h2>
       <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-3 sm:p-6 md:p-8">
-        <div className="grid grid-cols-6 gap-2 sm:gap-4 md:gap-6 justify-items-center w-full">
+        <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 justify-items-center w-full">
           {ALL_SEASONS.map((season) => {
-            const defaultActive = climate.includes(season);
-            const level = hasUsage ? (usageLevels![season] ?? 1) : (defaultActive ? 3 : 1);
-            const isActive = level > 1;
-            const fillValue = level === 3 ? 100 : level === 2 ? 50 : 0;
+            const level = usageLevels[season];
+            const isActive = level > 0;
+            const fillValue = level > 0 ? 100 : 0;
             const cfg = climateConfig[season];
             return (
               <UsageCell
@@ -91,15 +86,14 @@ export default function WhenToUse({ climate, timeOfDay, usageLevels }: WhenToUse
           })}
 
           {ALL_TIMES.map((time) => {
-            const defaultActive = timeOfDay.includes(time);
-            const level = hasUsage ? (usageLevels![time] ?? 1) : (defaultActive ? 3 : 1);
-            const isActive = level > 1;
-            const fillValue = level === 3 ? 100 : level === 2 ? 50 : 0;
+            const level = usageLevels[time];
+            const isActive = level > 0;
+            const fillValue = level > 0 ? 100 : 0;
             const cfg = timeOfDayConfig[time];
             return (
               <UsageCell
                 key={time}
-                label={time}
+                label={cfg.label}
                 icon={cfg.icon}
                 color={cfg.color}
                 isActive={isActive}

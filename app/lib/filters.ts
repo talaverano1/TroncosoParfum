@@ -3,24 +3,21 @@ import type { Product } from "@/app/types/products";
 // ─── Filter option definitions ────────────────────────────────────────────────
 
 export const GENDERS = [
-  { key: "all", label: "Todos", icon: "✦" },
+  { key: "all",       label: "Todos",  icon: "✦" },
   { key: "Masculino", label: "Hombre", icon: "♂" },
-  { key: "Femenino", label: "Mujer", icon: "♀" },
-  { key: "Unisex", label: "Unisex", icon: "◈" },
+  { key: "Femenino",  label: "Mujer",  icon: "♀" },
 ] as const;
 
 export const TIME_FILTERS = [
-  { key: "all", label: "Cualquier hora", icon: "🕐" },
-  { key: "Día", label: "De Día", icon: "☀️" },
-  { key: "Noche", label: "De Noche", icon: "🌙" },
+  { key: "all",      label: "Cualquier momento",       icon: "🕐" },
+  { key: "Casual",   label: "Casual",                   icon: "☀️" },
+  { key: "Especial", label: "Para ocasiones especiales", icon: "✨" },
 ] as const;
 
 export const SEASON_FILTERS = [
-  { key: "all", label: "Toda estación", icon: "🗓" },
-  { key: "Primavera", label: "Primavera", icon: "🌿" },
-  { key: "Verano", label: "Verano", icon: "☂️" },
-  { key: "Otoño", label: "Otoño", icon: "🍂" },
-  { key: "Invierno", label: "Invierno", icon: "❄️" },
+  { key: "all",      label: "Toda estación", icon: "🗓" },
+  { key: "Verano",   label: "Verano",        icon: "🔥" },
+  { key: "Invierno", label: "Invierno",      icon: "❄️" },
 ] as const;
 
 export const GENDER_SECTIONS: Array<{
@@ -29,32 +26,37 @@ export const GENDER_SECTIONS: Array<{
   accent: string;
   dot: string;
 }> = [
-  { key: "Masculino", label: "Hombre", accent: "text-blue-300", dot: "bg-blue-400" },
-  { key: "Femenino", label: "Mujer", accent: "text-rose-300", dot: "bg-rose-400" },
-  { key: "Unisex", label: "Unisex", accent: "text-amber-300", dot: "bg-amber-400" },
+  { key: "Masculino", label: "Hombre", accent: "text-blue-300",  dot: "bg-blue-400" },
+  { key: "Femenino",  label: "Mujer",  accent: "text-rose-300",  dot: "bg-rose-400" },
 ];
 
 // ─── Derived types ────────────────────────────────────────────────────────────
-export type GenderKey = typeof GENDERS[number]["key"];
-export type TimeKey = typeof TIME_FILTERS[number]["key"];
-export type SeasonKey = typeof SEASON_FILTERS[number]["key"];
+export type GenderKey  = typeof GENDERS[number]["key"];
+export type TimeKey    = typeof TIME_FILTERS[number]["key"];
+export type SeasonKey  = typeof SEASON_FILTERS[number]["key"];
 
 // ─── Filter logic ─────────────────────────────────────────────────────────────
 
-/** Returns true if the product matches the selected time and season filters */
+/** Devuelve true si el producto coincide con los filtros de time y season selecionados */
 export function matchesFilters(
   p: Product,
   time: TimeKey,
   season: SeasonKey
 ): boolean {
+  // ── Occasion filter (Casual / Especial) ──────────────────────────────────────
   const timeOk =
-    time === "all" || (p.usageLevels ? p.usageLevels[time as string] >= 2 : false);
+  time === "all" ||
+  (p.usageLevels ? p.usageLevels[time] === 1 : false);
+
+  // ── Season filter (Verano / Invierno) ────────────────────────────────────────
   const seasonOk =
-    season === "all" || (p.usageLevels ? p.usageLevels[season as string] >= 2 : false);
+    season === "all" ||
+    (p.usageLevels ? p.usageLevels[season] === 1 : false);
+
   return timeOk && seasonOk;
 }
 
-/** Sorts products: bestsellers first, then alphabetical */
+/** Ordena los productos: bestsellers primero, despues alfabéticamente */
 export function sortProducts(list: Product[]): Product[] {
   return [...list].sort((a, b) => {
     if (a.isBestseller !== b.isBestseller) return a.isBestseller ? -1 : 1;
