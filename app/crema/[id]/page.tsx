@@ -165,7 +165,7 @@ export default function CreamDetailPage() {
                   Descripción
                 </h2>
                 <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
-                  {cream.description}
+                  {cream.fullDescription}
                 </p>
               </motion.div>
 
@@ -175,7 +175,7 @@ export default function CreamDetailPage() {
                   Propiedades
                 </h2>
                 <ul className="flex flex-col gap-3">
-                  {cream.fullDescription.split("\n").filter(Boolean).map((line: string, i: number) => (
+                  {cream.properties.filter(Boolean).map((line: string, i: number) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="mt-1 w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
                       <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">

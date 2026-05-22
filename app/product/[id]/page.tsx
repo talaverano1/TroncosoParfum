@@ -22,6 +22,12 @@ import WhenToUse from "@/app/components/product/WhenToUse";
 import LongevityGauge from "@/app/components/product/LongevityGauge";
 import WhatsAppButton from "@/app/components/product/WhatsAppButton";
 
+import { Cinzel } from "next/font/google";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
 
 // ─── Gender badge color ───────────────────────────────────────────────────────
 const genderColor: Record<string, string> = {
@@ -100,7 +106,7 @@ export default function ProductDetailPage() {
                 >
                   {product.gender}
                 </span>
-                <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight">
+                <h1 className={`${cinzel.className} text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight`}>
                   {product.name}
                 </h1>
               </motion.div>
