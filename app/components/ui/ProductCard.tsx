@@ -6,6 +6,13 @@ import Link from "next/link";
 import { Product } from "@/app/types/products";
 import { getDiscountInfo } from "@/app/lib/pricing";
 
+import { Cinzel } from "next/font/google";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
+
 interface ProductCardProps {
   product: Product;
   index: number;
@@ -54,7 +61,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       {/* Contenedor del Texto */}
       <div className="p-3 md:p-5 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-[family-name:var(--font-heading)] text-sm md:text-lg font-semibold text-black mb-1 line-clamp-2 leading-tight">
+          <h3 className={`${cinzel.className} text-sm md:text-lg font-semibold text-black mb-1 line-clamp-2 leading-tight`}>
             {product.name}
           </h3>
           <p className="text-gray-500 text-xs md:text-sm mb-2 line-clamp-2 md:line-clamp-3 leading-relaxed">

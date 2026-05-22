@@ -17,6 +17,13 @@ import {
   type SeasonKey,
 } from "@/app/lib/filters";
 
+import { Cinzel } from "next/font/google";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function CatalogoPage() {
   const [activeGender, setActiveGender] = useState<GenderKey>("all");
@@ -85,7 +92,7 @@ export default function CatalogoPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-center mb-14"
           >
-            <p className="text-gold text-xs uppercase tracking-[0.4em] mb-4 font-medium">
+            <p className={`${cinzel.className} text-gold text-xs uppercase tracking-[0.4em] mb-4 font-medium`}>
               Troncoso Parfum
             </p>
             <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-6xl font-bold text-white mb-4">

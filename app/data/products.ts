@@ -81,7 +81,7 @@ export const products: Product[] = [
     },
     image: "/Salvatore/Salvatore_Img_1.jpg",
     images: ["/Salvatore/Salvatore_Img_1.jpg"],
-    isBestseller: false,
+    isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
       "50 ml": 55000,
@@ -130,7 +130,7 @@ export const products: Product[] = [
     },
     image: "/Indomable/Indomable_Img_1.jpg",
     images: ["/Indomable/Indomable_Img_1.jpg"],
-    isBestseller: true,
+    isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
       "50 ml": 55000,
@@ -164,9 +164,9 @@ export const products: Product[] = [
     longevity: { hours: 11, label: "Muy larga duración" },
   },
 
-  // ── 5. Tropical ──────────────────────────────────────────────────────────────
+  // ── 4. Tropical ──────────────────────────────────────────────────────────────
   {
-    id: 5,
+    id: 4,
     name: "Tropical",
     gender: "Unisex",
     description: "Piña y jengibre que evolucionan hacia coco, sándalo y ámbar adictivo",
@@ -182,7 +182,7 @@ export const products: Product[] = [
     },
     image: "/Tropical/Tropical_Img_1.jpg",
     images: ["/Tropical/Tropical_Img_1.jpg"],
-    isBestseller: false,
+    isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
       "50 ml": 55000,
@@ -209,15 +209,15 @@ export const products: Product[] = [
     usageLevels: {
       Verano: 1,
       Invierno: 0,
-      Casual: 0,
-      Especial: 1,
+      Casual: 1,
+      Especial: 0,
     },
     longevity: { hours: 10, label: "Larga duración" },
   },
 
-  // ── 7. Campeones ─────────────────────────────────────────────────────────────
+  // ── 5. Campeones ─────────────────────────────────────────────────────────────
   {
-    id: 7,
+    id: 5,
     name: "Campeones",
     gender: "Masculino",
     description: "Lavanda especiada e incienso que cierran en vainilla cálida y triunfante",
@@ -269,9 +269,9 @@ export const products: Product[] = [
     longevity: { hours: 10, label: "Larga duración" },
   },
 
-  // ── 8. Amor y Luz ────────────────────────────────────────────────────────────
+  // ── 6. Amor y Luz ────────────────────────────────────────────────────────────
   {
-    id: 8,
+    id: 6,
     name: "Amor y Luz",
     gender: "Femenino",
     description: "Champagne rosé y flores que se quedan en la piel cálidos e imposibles de olvidar",
@@ -318,9 +318,9 @@ export const products: Product[] = [
     longevity: { hours: 11, label: "Larga duración" },
   },
 
-  // ── 9. Clásico Blush ─────────────────────────────────────────────────────────
+  // ── 7. Clásico Blush ─────────────────────────────────────────────────────────
   {
-    id: 9,
+    id: 7,
     name: "Clásico Blush",
     gender: "Femenino",
     description: "Bergamota y almendra con peonía que cierran en vainilla adictiva e inolvidable",
@@ -336,7 +336,7 @@ export const products: Product[] = [
     },
     image: "/Clasico Blush/ClasicoBlush_Img_1.jpg",
     images: ["/Clasico Blush/ClasicoBlush_Img_1.jpg", "/Clasico Blush/ClasicoBlush_Img_2.jpg"],
-    isBestseller: false,
+    isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
       "50 ml": 55000,
@@ -370,9 +370,9 @@ export const products: Product[] = [
     longevity: { hours: 10, label: "Larga duración" },
   },
 
-  // ── 10. Regina ───────────────────────────────────────────────────────────────
+  // ── 8. Regina ───────────────────────────────────────────────────────────────
   {
-    id: 10,
+    id: 8,
     name: "Regina",
     gender: "Femenino",
     description: "Almendra y café que evolucionan hacia un corazón floral y una base cálida e irresistible",
@@ -417,6 +417,110 @@ export const products: Product[] = [
     usageLevels: {
       Verano: 0,
       Invierno: 1,
+      Casual: 1,
+      Especial: 0,
+    },
+    longevity: { hours: 12, label: "Larga duración" },
+  },
+
+  // ── 9. Homme Intens ───────────────────────────────────────────────────────────────
+  {
+    id: 9,
+    name: "Homme Intens",
+    gender: "Masculino",
+    description: "",
+    fullDescription:
+      "Geranio fresco con un toque cítrico abre limpio… pero con intención.\n"
+      + "Haba tonka en el corazón: cálida, envolvente… despierta el anhelo.\n"
+      + "Sándalo en el fondo: profundo, firme… pura intensidad que se siente.\n"
+      + "No es solo presencia.\n"
+      + "Es poder que se percibe…\n"
+      + "y deseo que no se apaga.",
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 74000,
+    },
+    image: "/Homme Intens/HommeIntens_Img_1.jpg",
+    images: ["/Homme Intens/HommeIntens_Img_1.jpg"],
+    isBestseller: false,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
+    scentNotes: [
+      { name: "Almendra", intensity: 9 },
+      { name: "Café", intensity: 8 },
+      { name: "Jazmín", intensity: 9 },
+      { name: "Rosa Búlgara", intensity: 9 },
+      { name: "Vainilla", intensity: 10 },
+      { name: "Cacao", intensity: 8 },
+      { name: "Haba Tonka", intensity: 8 },
+    ],
+    mainAccords: [
+      { name: "Caramelo", percentage: 100, color: "bg-[#9a1818]" },
+      { name: "Aromatico", percentage: 90, color: "bg-[#2a3a50]" },
+      { name: "Dulce", percentage: 85, color: "bg-[#7a2808]" },
+      { name: "Citrico", percentage: 75, color: "bg-[#6e5a1a]" },
+      { name: "Avainillado", percentage: 70, color: "bg-[#7a2e0c]" },
+      { name: "Ambar", percentage: 60, color: "bg-[#3e1c08]" },
+      { name: "Especiado Suave", percentage: 50, color: "bg-[#4a2c14]" },
+      { name: "Amaderado", percentage: 50, color: "bg-[#2a4050]" },
+    ],
+    usageLevels: {
+      Verano: 0,
+      Invierno: 1,
+      Casual: 0,
+      Especial: 1,
+    },
+    longevity: { hours: 12, label: "Larga duración" },
+  },
+  // ── 10. Enigma ───────────────────────────────────────────────────────────────
+  {
+    id: 10,
+    name: "Enigma",
+    gender: "Masculino",
+    description: "",
+    fullDescription:
+      "Absenta, anís e hinojo abren con un toque oscuro y provocador.\n"
+      + "La lavanda equilibra con una frescura elegante y adictiva.\n"
+      + "Vainilla negra y almizcle cierran cálidos, sensuales… pegados a la piel.\n"
+      + "Dulce, especiado y magnético.\n"
+      + "De esos que no se olvidan.",
+    prices: {
+      "5 ml": 12000,
+      "50 ml": 74000,
+    },
+    image: "/Enigma/Enigma_Img_1.jpg",
+    images: ["/Enigma/Enigma_Img_1.jpg"],
+    isBestseller: false,
+    discountPrices: {
+      "5 ml": 12000,
+      "50 ml": 55000,
+    },
+    scentNotes: [
+      { name: "Almendra", intensity: 9 },
+      { name: "Café", intensity: 8 },
+      { name: "Jazmín", intensity: 9 },
+      { name: "Rosa Búlgara", intensity: 9 },
+      { name: "Vainilla", intensity: 10 },
+      { name: "Cacao", intensity: 8 },
+      { name: "Haba Tonka", intensity: 8 },
+    ],
+    mainAccords: [
+      { name: "Aromatico", percentage: 100, color: "bg-[#9a1818]" },
+      { name: "Avainillado", percentage: 90, color: "bg-[#2a3a50]" },
+      { name: "Especiado Suave", percentage: 70, color: "bg-[#7a2808]" },
+      { name: "Anis", percentage: 65, color: "bg-[#6e5a1a]" },
+      { name: "Lavanda", percentage: 65, color: "bg-[#7a2e0c]" },
+      { name: "Almizclado", percentage: 60, color: "bg-[#3e1c08]" },
+      { name: "Atalcado", percentage: 45, color: "bg-[#4a2c14]" },
+      { name: "Amargo", percentage: 40, color: "bg-[#2a4050]" },
+      { name: "Dulce", percentage: 40, color: "bg-[#52401e]" },
+      { name: "Fresco Especiado", percentage: 30, color: "bg-[#524a2e]" },
+    ],
+    usageLevels: {
+      Verano: 0,
+      Invierno: 1,
       Casual: 0,
       Especial: 1,
     },
@@ -428,18 +532,21 @@ export const creams: Cream[] = [
   {
     id: 101,
     name: "Crema Fijadora Humectante",
-    description: "Nuestra crema fijadora está diseñada para preparar e hidratar la piel antes de aplicar la fragancia, ayudando a mejorar la adherencia del perfume y prolongar su sensación sobre la pie",
+    description: " Crema ligera que prepara e hidrata la piel para mejorar la adherencia y duración de tu perfume",
     fullDescription:
-      "Hidratación ligera y rápida absorción\n"
-      + "Ayuda a preparar la piel para la aplicación del perfume\n"
-      + "Fórmula con vitaminas y agentes humectantes\n"
-      + "Ayuda a proteger la barrera natural de la piel\n"
-      + "Textura suave y no grasosa\n"
-      + "Compatible con cualquier fragancia\n"
-      + "Sensación sedosa y confortable sobre la piel\n"
-      + "Ideal para complementar la experiencia del perfume",
+      "Nuestra crema fijadora está diseñada para preparar e hidratar la piel antes de aplicar la fragancia\n"
+      + "ayudando a mejorar la adherencia del perfume y prolongar su sensación sobre la piel\n",
     image: "/Crema/Crema_Img_1.png",
     price: 10000,
     quantity: "100 gr",
+    properties: [
+      "Hidratación ligera y rápida absorción",
+      "Ayuda a preparar la piel para la aplicación del perfume",
+      "Fórmula con vitaminas y agentes humectantes",
+      "Compatible con cualquier fragancia",
+      "Ayuda a proteger la barrera natural de la piel",
+      "Sensación sedosa y confortable sobre la piel",
+      "Ideal para complementar la experiencia del perfume"
+    ]
   },
 ];

@@ -4,10 +4,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
+import { Cinzel } from "next/font/google";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
+
 const navLinks = [
   { label: "Inicio", href: "/" },
   { label: "Colección", href: "/catalogo" },
-  { label: "Nosotros", href: "/#nosotros" },
+  { label: "Nosotros", href: "/nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ];
 
@@ -18,11 +25,11 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A] border-b border-gold/10 py-3">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link
-          href="/"
-          className="font-[family-name:var(--font-heading)] text-white text-xl md:text-2xl tracking-wide"
-        >
-          Troncoso <span className="text-gold">Parfum</span>
-        </Link>
+  href="/"
+  className={`${cinzel.className} text-white text-xl md:text-2xl uppercase`}
+>
+  Troncoso <span className="text-gold">Parfum</span>
+</Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">

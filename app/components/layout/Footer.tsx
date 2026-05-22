@@ -1,6 +1,13 @@
+import { Cinzel } from "next/font/google";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
+
 const footerLinks = [
   { label: "Tienda", href: "/catalogo" },
-  { label: "Sobre nosotros", href: "#nosotros" },
+  { label: "Sobre nosotros", href: "/nosotros" },
   { label: "Contacto", href: "#contacto" },
 ];
 
@@ -44,7 +51,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-[family-name:var(--font-heading)] text-lg md:text-2xl mb-1 md:mb-4">
+            <h3 className={`${cinzel.className} text-lg md:text-2xl mb-1 md:mb-4`}>
               Troncoso <span className="text-gold">Parfum</span>
             </h3>
             <p className="text-gray-400 text-xs md:text-sm leading-tight md:leading-relaxed">
@@ -93,7 +100,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-3 pt-2 md:mt-12 md:pt-8 text-center">
-          <p className="text-gray-500 text-[10px] md:text-sm">
+          <p className={`${cinzel.className} text-gray-500 text-[10px] md:text-sm`}>
             © {new Date().getFullYear()} Troncoso Parfum
           </p>
         </div>

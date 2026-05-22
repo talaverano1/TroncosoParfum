@@ -1,6 +1,6 @@
 // ─── WhatsApp URL builder ─────────────────────────────────────────────────────
 
-const WHATSAPP_NUMBER = "5492615177609";
+const WHATSAPP_NUMBER = "5492616800563";
 
 /**
  * Builds a wa.me URL with a pre-filled message for a perfume product.
