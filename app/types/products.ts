@@ -43,6 +43,7 @@ export interface Cream {
   name: string;
   description: string;
   fullDescription: string;
+  properties: string[];
   image: string;
   images?: string[];
   /** Fixed price (single size) */

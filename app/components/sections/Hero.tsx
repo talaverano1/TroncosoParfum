@@ -3,6 +3,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+import { Cinzel } from "next/font/google";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
+
 export default function Hero() {
   return (
     <section
@@ -34,7 +41,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-gold text-sm md:text-base uppercase tracking-[0.35em] mb-6 font-medium"
+          className={`${cinzel.className} text-gold text-sm md:text-base uppercase tracking-[0.35em] mb-6 font-medium`}
         >
           Fragancias premium
         </motion.p>
@@ -43,7 +50,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="font-[family-name:var(--font-heading)] text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+          className={`${cinzel.className} text-white text-4xl md:text-6xl lg:text-6xl font-bold leading-tight mb-6`}
         >
           Descubrí tu{" "}
           <span className="text-gold-gradient">esencia</span>
@@ -53,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-white/70 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto"
+          className={`${cinzel.className} text-white/70 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto`}
         >
           Fragancias premium que definen tu estilo
         </motion.p>
