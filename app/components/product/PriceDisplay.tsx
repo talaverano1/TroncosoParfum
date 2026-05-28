@@ -1,10 +1,13 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
+
 interface PriceDisplayProps {
   currentPrice: number;
   originalPrice: number;
   isOnSale: boolean;
   savingsPct: number;
+  size?: number;
 }
 
 export default function PriceDisplay({
@@ -12,6 +15,7 @@ export default function PriceDisplay({
   originalPrice,
   isOnSale,
   savingsPct,
+  size,
 }: PriceDisplayProps) {
   return (
     <div>
@@ -38,6 +42,12 @@ export default function PriceDisplay({
       {isOnSale && (
         <p className="text-white/35 text-sm sm:text-base line-through mt-1">
           ARS {originalPrice.toLocaleString("es-AR")}
+        </p>
+      )}
+
+      {size === 50 && (
+        <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
+          Fragancia + crema 60g
         </p>
       )}
 

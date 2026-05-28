@@ -118,6 +118,7 @@ export default function ProductDetailPage() {
                   originalPrice={originalPrice}
                   isOnSale={isOnSale}
                   savingsPct={savingsPct}
+                  size={parseInt(selectedSize)}
                 />
                 <SizeSelector
                   prices={product.prices}
@@ -150,11 +151,9 @@ export default function ProductDetailPage() {
           </div>
 
           {/* ── Full-width sections below the grid ──────────────────────────── */}
-          <MainAccords accords={product.mainAccords} />
-          <WhenToUse
-            usageLevels={product.usageLevels}
-          />
           <LongevityGauge longevity={product.longevity} />
+          <WhenToUse usageLevels={product.usageLevels} />
+          <MainAccords accords={product.mainAccords} />
         </div>
       </main>
 
