@@ -233,7 +233,7 @@ export const products: Product[] = [
       "50 ml": 74000,
     },
     image: "/Campeones/Campeones_Img_1.jpg",
-    images: ["/Campeones/Campeones_Img_2.jpg", "/Campeones/Campeones_Img_1.jpg"],
+    images: ["/Campeones/Campeones_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
