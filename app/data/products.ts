@@ -80,7 +80,7 @@ export const products: Product[] = [
       "50 ml": 74000,
     },
     image: "/Salvatore/Salvatore_Img_1.jpg",
-    images: ["/Salvatore/Salvatore_Img_1.jpg"],
+    images: ["/Salvatore/Salvatore_Img_2.jpg", "/Salvatore/Salvatore_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
@@ -128,8 +128,8 @@ export const products: Product[] = [
       "5 ml": 12000,
       "50 ml": 74000,
     },
-    image: "/Indomable/Indomable_Img_1.jpg",
-    images: ["/Indomable/Indomable_Img_1.jpg"],
+    image: "/Indomable/Indomable_Img_2.jpg",
+    images: ["/Indomable/Indomable_Img_1.jpg", "/Indomable/Indomable_Img_2.jpg"],
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
@@ -233,7 +233,7 @@ export const products: Product[] = [
       "50 ml": 74000,
     },
     image: "/Campeones/Campeones_Img_1.jpg",
-    images: ["/Campeones/Campeones_Img_1.jpg"],
+    images: ["/Campeones/Campeones_Img_2.jpg", "/Campeones/Campeones_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
@@ -335,7 +335,7 @@ export const products: Product[] = [
       "50 ml": 74000,
     },
     image: "/Clasico Blush/ClasicoBlush_Img_1.jpg",
-    images: ["/Clasico Blush/ClasicoBlush_Img_1.jpg", "/Clasico Blush/ClasicoBlush_Img_2.jpg"],
+    images: ["/Clasico Blush/ClasicoBlush_Img_2.jpg", "/Clasico Blush/ClasicoBlush_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
