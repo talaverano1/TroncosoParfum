@@ -21,9 +21,16 @@ export default function MainAccords({ accords }: MainAccordsProps) {
         </h2>
         <button
           onClick={() => setShowBars(!showBars)}
-          className="text-gold hover:text-white underline transition-colors text-[10px] sm:text-xs md:text-sm"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gold/40 bg-gold/10 hover:bg-gold/20 hover:border-gold/70 text-gold hover:text-white transition-all duration-300 text-xs sm:text-sm font-semibold tracking-wide"
         >
           {showBars ? "Ocultar" : "Detalles"}
+          <svg
+            width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            className={`transition-transform duration-300 ${showBars ? "rotate-180" : "rotate-0"}`}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
         </button>
       </div>
 
