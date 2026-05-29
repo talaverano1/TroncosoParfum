@@ -15,7 +15,7 @@ const navLinks = [
   { label: "Inicio", href: "/" },
   { label: "Colección", href: "/catalogo" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "Contacto", href: "https://wa.me/5492616800563", external: true },
 ];
 
 export default function Navbar() {
@@ -25,22 +25,33 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A] border-b border-gold/10 py-3">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link
-  href="/"
-  className={`${cinzel.className} text-white text-xl md:text-2xl uppercase`}
->
-  Troncoso <span className="text-gold">Parfum</span>
-</Link>
+          href="/"
+          className={`${cinzel.className} text-white text-xl md:text-2xl uppercase`}
+        >
+          Troncoso <span className="text-gold">Parfum</span>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors duration-300"
-              >
-                {link.label}
-              </Link>
+              {link.external ? (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors duration-300"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors duration-300"
+                >
+                  {link.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -73,13 +84,25 @@ export default function Navbar() {
             <ul className="flex flex-col items-center gap-4 py-6">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileOpen(false)}
+                      className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-white/80 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
