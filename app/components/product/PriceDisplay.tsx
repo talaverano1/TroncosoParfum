@@ -46,9 +46,11 @@ export default function PriceDisplay({
       )}
 
       {size === 50 && (
-        <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
-          Fragancia + crema 60g
-        </p>
+        <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10">
+          <p className="text-gold text-sm sm:text-base font-semibold tracking-wide">
+            Fragancia + crema 60gr
+          </p>
+        </div>
       )}
 
       <p className="text-white/40 text-sm md:text-base mt-2">
