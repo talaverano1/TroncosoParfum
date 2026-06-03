@@ -33,7 +33,7 @@ export const products: Product[] = [
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Mandarina", intensity: 9 },
@@ -84,7 +84,7 @@ export const products: Product[] = [
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Cítricos", intensity: 10 },
@@ -133,7 +133,7 @@ export const products: Product[] = [
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Lavanda", intensity: 9 },
@@ -185,7 +185,7 @@ export const products: Product[] = [
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Piña", intensity: 10 },
@@ -237,7 +237,7 @@ export const products: Product[] = [
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Lavanda", intensity: 9 },
@@ -291,7 +291,7 @@ export const products: Product[] = [
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Champagne Rosé", intensity: 9 },
@@ -339,7 +339,7 @@ export const products: Product[] = [
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Bergamota", intensity: 8 },
@@ -391,7 +391,7 @@ export const products: Product[] = [
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
@@ -445,7 +445,7 @@ export const products: Product[] = [
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
@@ -495,7 +495,7 @@ export const products: Product[] = [
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 55000,
+      "50 ml": 48000,
     },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
