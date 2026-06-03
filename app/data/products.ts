@@ -26,14 +26,14 @@ export const products: Product[] = [
       + "Es presencia que se siente.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Soberano/Soberano_Img_1.jpg",
     images: ["/Soberano/Soberano_Img_2.jpg", "/Soberano/Soberano_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Mandarina", intensity: 9 },
@@ -77,14 +77,14 @@ export const products: Product[] = [
       + "Irresistible al final.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Salvatore/Salvatore_Img_1.jpg",
     images: ["/Salvatore/Salvatore_Img_2.jpg", "/Salvatore/Salvatore_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Cítricos", intensity: 10 },
@@ -126,14 +126,14 @@ export const products: Product[] = [
       + "pero termina siendo puro magnetismo.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Indomable/Indomable_Img_2.jpg",
     images: ["/Indomable/Indomable_Img_1.jpg", "/Indomable/Indomable_Img_2.jpg"],
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Lavanda", intensity: 9 },
@@ -178,14 +178,14 @@ export const products: Product[] = [
       + "termina siendo pura tentación.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Tropical/Tropical_Img_1.jpg",
     images: ["/Tropical/Tropical_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Piña", intensity: 10 },
@@ -230,14 +230,14 @@ export const products: Product[] = [
       + "CAMPEONES.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Campeones/Campeones_Img_1.jpg",
     images: ["/Campeones/Campeones_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Lavanda", intensity: 9 },
@@ -284,14 +284,14 @@ export const products: Product[] = [
       + "y te hacen desear lo que ya no podés tener.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Amor y Luz/AmorYLuz_Img_1.jpg",
     images: ["/Amor y Luz/AmorYLuz_Img_2.png", "/Amor y Luz/AmorYLuz_Img_1.jpg"],
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Champagne Rosé", intensity: 9 },
@@ -332,14 +332,14 @@ export const products: Product[] = [
       + "como esos recuerdos que vuelven cuando menos lo esperás.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Clasico Blush/ClasicoBlush_Img_1.jpg",
     images: ["/Clasico Blush/ClasicoBlush_Img_2.jpg", "/Clasico Blush/ClasicoBlush_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Bergamota", intensity: 8 },
@@ -384,14 +384,14 @@ export const products: Product[] = [
       + "y termina siendo un recuerdo del que no te soltás.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Regina/Regina_Img_3.png",
     images: ["/Regina/Regina_Img_2.png", "/Regina/Regina_Img_1.png", "/Regina/Regina_Img_3.png"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
@@ -438,14 +438,14 @@ export const products: Product[] = [
       + "y deseo que no se apaga.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Homme Intens/HommeIntens_Img_1.jpg",
     images: ["/Homme Intens/HommeIntens_Img_1.jpg"],
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
@@ -488,14 +488,14 @@ export const products: Product[] = [
       + "De esos que no se olvidan.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 74000,
+      "50 ml": 65000,
     },
     image: "/Enigma/Enigma_Img_1.jpg",
     images: ["/Enigma/Enigma_Img_1.jpg"],
     isBestseller: false,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 48000,
+      "50 ml": 65000,
     },
     scentNotes: [
       { name: "Almendra", intensity: 9 },
