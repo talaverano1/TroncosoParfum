@@ -26,14 +26,14 @@ export const products: Product[] = [
       + "Es presencia que se siente.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 65000,
+      "50 ml": 60000,
     },
     image: "/Soberano/Soberano_Img_1.jpg",
     images: ["/Soberano/Soberano_Img_2.jpg", "/Soberano/Soberano_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 45000,
+      "50 ml": 60000,
     },
     scentNotes: [
       { name: "Mandarina", intensity: 9 },
@@ -332,14 +332,14 @@ export const products: Product[] = [
       + "como esos recuerdos que vuelven cuando menos lo esperás.",
     prices: {
       "5 ml": 12000,
-      "50 ml": 65000,
+      "50 ml": 60000,
     },
     image: "/Clasico Blush/ClasicoBlush_Img_1.jpg",
     images: ["/Clasico Blush/ClasicoBlush_Img_2.jpg", "/Clasico Blush/ClasicoBlush_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
       "5 ml": 12000,
-      "50 ml": 45000,
+      "50 ml": 60000,
     },
     scentNotes: [
       { name: "Bergamota", intensity: 8 },
