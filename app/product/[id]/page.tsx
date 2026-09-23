@@ -16,6 +16,7 @@ import Footer from "@/app/components/layout/Footer";
 import ProductCarousel from "@/app/components/product/ProductCarousel";
 import SizeSelector from "@/app/components/product/SizeSelector";
 import PriceDisplay from "@/app/components/product/PriceDisplay";
+import IntensitySelector, { type IntensityKey, INTENSITY_OPTIONS } from "@/app/components/product/IntensitySelector";
 import ScentNotes from "@/app/components/product/ScentNotes";
 import MainAccords from "@/app/components/product/MainAccords";
 import WhenToUse from "@/app/components/product/WhenToUse";
@@ -43,6 +44,7 @@ export default function ProductDetailPage() {
 
   // useState must be called before any conditional return (Rules of Hooks)
   const [selectedSize, setSelectedSize] = useState<SizeKey>("50 ml");
+  const [selectedIntensity, setSelectedIntensity] = useState<IntensityKey>("edp");
 
   if (!product) return notFound();
 
@@ -51,7 +53,18 @@ export default function ProductDetailPage() {
     product.discountPrices?.[selectedSize]
   );
   const originalPrice = product.prices[selectedSize];
-  const whatsappUrl = buildProductWhatsAppUrl(product.name, selectedSize, currentPrice);
+  const activeIntensity = INTENSITY_OPTIONS.find((o) => o.key === selectedIntensity)!;
+  const adjustedLongevity = {
+    ...product.longevity,
+    hours: selectedIntensity === "elixir"
+      ? product.longevity.hours
+      : Math.max(product.longevity.hours - 2, 1),
+  };
+  const whatsappUrl = buildProductWhatsAppUrl(
+    `${product.name} — ${activeIntensity.type}`,
+    `${activeIntensity.ml} ml`,
+    activeIntensity.price
+  );
   const images = product.images ?? [product.image];
 
   return (
@@ -111,7 +124,7 @@ export default function ProductDetailPage() {
                 </h1>
               </motion.div>
 
-              {/* Price + size selector */}
+              {/* Price + size selector 
               <motion.div variants={fadeUp}>
                 <PriceDisplay
                   currentPrice={currentPrice}
@@ -125,6 +138,14 @@ export default function ProductDetailPage() {
                   discountPrices={product.discountPrices}
                   selectedSize={selectedSize}
                   onSelect={setSelectedSize}
+                />
+              </motion.div>*/}
+
+              {/* Intensity selector */}
+              <motion.div variants={fadeUp}>
+                <IntensitySelector
+                  selected={selectedIntensity}
+                  onSelect={setSelectedIntensity}
                 />
               </motion.div>
 
@@ -151,7 +172,7 @@ export default function ProductDetailPage() {
           </div>
 
           {/* ── Full-width sections below the grid ──────────────────────────── */}
-          <LongevityGauge longevity={product.longevity} />
+          <LongevityGauge longevity={adjustedLongevity} />
           <WhenToUse usageLevels={product.usageLevels} />
           <MainAccords accords={product.mainAccords} />
         </div>
