@@ -35,36 +35,32 @@ export default function SizeSelector({
               key={size}
               id={`size-${size.replace(" ", "")}`}
               onClick={() => onSelect(size)}
-              className={`relative flex flex-col items-center justify-center gap-0.5 px-4 py-2.5 rounded-xl border-2 font-bold text-sm tracking-wide transition-all duration-250 select-none ${
-                isSelected
+              className={`relative flex flex-col items-center justify-center gap-0.5 px-4 py-2.5 rounded-xl border-2 font-bold text-sm tracking-wide transition-all duration-250 select-none ${isSelected
                   ? "gold-gradient text-black border-transparent shadow-lg shadow-gold/30 scale-105"
                   : "bg-transparent text-gold border-gold/40 hover:border-gold/80 hover:bg-gold/5"
-              }`}
+                }`}
               aria-pressed={isSelected}
             >
               <span className="text-base leading-none">{size}</span>
               {isOnSale ? (
                 <>
                   <span
-                    className={`text-[10px] font-semibold tracking-widest leading-none ${
-                      isSelected ? "text-black/70" : "text-gold/80"
-                    }`}
+                    className={`text-[10px] font-semibold tracking-widest leading-none ${isSelected ? "text-black/70" : "text-gold/80"
+                      }`}
                   >
                     ARS {displayPrice.toLocaleString("es-AR")}
                   </span>
                   <span
-                    className={`text-[9px] font-semibold leading-none line-through ${
-                      isSelected ? "text-black/40" : "text-white/30"
-                    }`}
+                    className={`text-[9px] font-semibold leading-none line-through ${isSelected ? "text-black/40" : "text-white/30"
+                      }`}
                   >
                     {prices[size].toLocaleString("es-AR")}
                   </span>
                 </>
               ) : (
                 <span
-                  className={`text-[10px] font-semibold tracking-widest leading-none ${
-                    isSelected ? "text-black/70" : "text-white/40"
-                  }`}
+                  className={`text-[10px] font-semibold tracking-widest leading-none ${isSelected ? "text-black/70" : "text-white/40"
+                    }`}
                 >
                   ARS {prices[size].toLocaleString("es-AR")}
                 </span>
