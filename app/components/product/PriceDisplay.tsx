@@ -7,7 +7,6 @@ interface PriceDisplayProps {
   originalPrice: number;
   isOnSale: boolean;
   savingsPct: number;
-  size?: number;
 }
 
 export default function PriceDisplay({
@@ -15,7 +14,6 @@ export default function PriceDisplay({
   originalPrice,
   isOnSale,
   savingsPct,
-  size,
 }: PriceDisplayProps) {
   return (
     <div>
@@ -45,13 +43,11 @@ export default function PriceDisplay({
         </p>
       )}
 
-      {size === 50 && (
-        <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10">
-          <p className="text-gold text-sm sm:text-base font-semibold tracking-wide">
-            Fragancia + crema 60gr
-          </p>
-        </div>
-      )}
+      <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10">
+        <p className="text-gold text-sm sm:text-base font-semibold tracking-wide">
+          Fragancia + Crema 60 g
+        </p>
+      </div>
 
       <p className="text-white/40 text-sm md:text-base mt-2">
         Precio por unidad · Stock disponible
