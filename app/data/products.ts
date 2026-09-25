@@ -25,15 +25,15 @@ export const products: Product[] = [
       + "No es un perfume más.\n"
       + "Es presencia que se siente.",
     prices: {
-      "5 ml": 35000,
-      "50 ml": 45000,
+      "5 ml": 50000,
+      "50 ml": 60000,
     },
     image: "/Soberano/Soberano_Img_1.jpg",
     images: ["/Soberano/Soberano_Img_2.jpg", "/Soberano/Soberano_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
-      "5 ml": 35000,
-      "50 ml": 45000,
+      "5 ml": 50000,
+      "50 ml": 60000,
     },
     scentNotes: [
       { name: "Mandarina", intensity: 9 },
@@ -331,15 +331,15 @@ export const products: Product[] = [
       + "Un aroma que se queda…\n"
       + "como esos recuerdos que vuelven cuando menos lo esperás.",
     prices: {
-      "5 ml": 35000,
-      "50 ml": 45000,
+      "5 ml": 50000,
+      "50 ml": 60000,
     },
     image: "/Clasico Blush/ClasicoBlush_Img_1.jpg",
     images: ["/Clasico Blush/ClasicoBlush_Img_2.jpg", "/Clasico Blush/ClasicoBlush_Img_1.jpg"],
     isBestseller: true,
     discountPrices: {
-      "5 ml": 35000,
-      "50 ml": 45000,
+      "5 ml": 50000,
+      "50 ml": 60000,
     },
     scentNotes: [
       { name: "Bergamota", intensity: 8 },
