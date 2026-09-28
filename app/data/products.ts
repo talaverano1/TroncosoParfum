@@ -290,7 +290,7 @@ export const products: Product[] = [
     images: ["/Amor y Luz/AmorYLuz_Img_2.png", "/Amor y Luz/AmorYLuz_Img_1.jpg"],
     isBestseller: false,
     discountPrices: {
-      "5 ml": 12000,
+      "5 ml": 35000,
       "50 ml": 45000,
     },
     scentNotes: [

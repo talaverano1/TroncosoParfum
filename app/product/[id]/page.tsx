@@ -63,7 +63,7 @@ export default function ProductDetailPage() {
   const whatsappUrl = buildProductWhatsAppUrl(
     `${product.name} — ${activeIntensity.type}`,
     `${activeIntensity.ml} ml`,
-    activeIntensity.price
+    selectedIntensity === "elixir" ? product.prices["50 ml"] : product.prices["5 ml"]
   );
   const images = product.images ?? [product.image];
 
@@ -146,6 +146,7 @@ export default function ProductDetailPage() {
                 <IntensitySelector
                   selected={selectedIntensity}
                   onSelect={setSelectedIntensity}
+                  prices={product.prices}
                 />
               </motion.div>
 
