@@ -6,18 +6,20 @@ export interface IntensityOption {
     key: IntensityKey;
     type: string;
     subtitle: string;
+    /** ml shown in the card (display only) */
     ml: number;
+    /** price is injected dynamically from the product */
     price: number;
     description: string;
 }
 
-export const INTENSITY_OPTIONS: IntensityOption[] = [
+/** Static metadata — prices are set dynamically from product.prices */
+export const INTENSITY_OPTIONS: Omit<IntensityOption, "price">[] = [
     {
         key: "edp",
         type: "EAU DE PARFUM",
         subtitle: "Equilibrio Perfecto",
         ml: 50,
-        price: 35000,
         description: "Ideal para uso diario",
     },
     {
@@ -25,7 +27,6 @@ export const INTENSITY_OPTIONS: IntensityOption[] = [
         type: "ELIXIR",
         subtitle: "Máxima Intensidad",
         ml: 50,
-        price: 45000,
         description: "Mayor concentración y duración",
     },
 ];
@@ -33,11 +34,19 @@ export const INTENSITY_OPTIONS: IntensityOption[] = [
 interface IntensitySelectorProps {
     selected: IntensityKey;
     onSelect: (key: IntensityKey) => void;
+    /** Product prices: "5 ml" → EDP price, "50 ml" → Elixir price */
+    prices: { "5 ml": number; "50 ml": number };
+}
+
+/** Map each intensity key to its corresponding product price */
+function getPriceForKey(key: IntensityKey, prices: IntensitySelectorProps["prices"]): number {
+    return key === "elixir" ? prices["50 ml"] : prices["5 ml"];
 }
 
 export default function IntensitySelector({
     selected,
     onSelect,
+    prices,
 }: IntensitySelectorProps) {
     return (
         <div className="flex flex-col gap-3">
@@ -47,6 +56,7 @@ export default function IntensitySelector({
 
             <div className="grid grid-cols-2 gap-3">
                 {INTENSITY_OPTIONS.map((opt) => {
+                    const price = getPriceForKey(opt.key, prices);
                     const isSelected = selected === opt.key;
                     return (
                         <button
@@ -98,7 +108,7 @@ export default function IntensitySelector({
                                 className={`text-2xl md:text-3xl font-bold leading-none ${isSelected ? "text-black" : "text-gold"
                                     }`}
                             >
-                                ARS {opt.price.toLocaleString("es-AR")}
+                                ARS {price.toLocaleString("es-AR")}
                             </span>
 
                             {/* Description */}
